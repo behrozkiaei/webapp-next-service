@@ -1,0 +1,16 @@
+.button-style {
+    padding: 8px 16px;
+    border-radius: 9px;
+    cursor: pointer;
+    font-size: 12px;
+    border: 1px solid var(--main_gray);
+    width: 45%;
+  }
+  .selected{
+    border:unset;
+    background-color:var(--primary) ;
+    color:var(--white) ;
+  }
+  .not-selected{
+    /* border-color: "--var(main_gray)"; */
+  }
