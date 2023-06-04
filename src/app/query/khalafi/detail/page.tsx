@@ -84,25 +84,14 @@ export default function Khalafi() {
   };
   useEffect(() => {
     if (plate && selectedNajiUser) checkPlateIfExist(plate);
-<<<<<<< HEAD
     if (selectedNajiUser) {
       setMobile(selectedNajiUser.mobile ?? "");
       setNationalCode(selectedNajiUser.nationalCode ?? "");
-=======
-    if(selectedNajiUser ){
-      setMobile(selectedNajiUser.mobile ?? "")
-      setNationalCode(selectedNajiUser.nationalCode ?? "")
->>>>>>> b851cedafeab1598d1e9745e328241333c70385c
     }
     if (selectedPlate) {
       setPlate(selectedPlate);
     }
-<<<<<<< HEAD
   }, [plate, selectedNajiUser, selectedPlate, checkPlateIfExist]);
-=======
-  }, [plate, selectedNajiUser  , selectedPlate,checkPlateIfExist]);
-
->>>>>>> b851cedafeab1598d1e9745e328241333c70385c
 
   useEffect(() => {
     if (uiState == NajiUiState.confirmNationAndMobileState) {
@@ -110,13 +99,7 @@ export default function Khalafi() {
       set("uiState", undefined);
     }
     // console.log(uiState);
-<<<<<<< HEAD
   }, [uiState, set]);
-=======
-  }, [uiState,set]);
-
-
->>>>>>> b851cedafeab1598d1e9745e328241333c70385c
 
   useEffect(() => {
     if (phoneNumberValidator(mobile)) {
@@ -128,13 +111,7 @@ export default function Khalafi() {
     const verified =
       phoneNumberValidator(mobile) && verifyIranianNationalId(nationalCode);
     verified && checkMobileAndNationalCodeExist(mobile, nationalCode, true);
-<<<<<<< HEAD
   }, [mobile, nationalCode, checkMobileAndNationalCodeExist]);
-=======
-  }, [mobile, nationalCode,checkMobileAndNationalCodeExist]);
-
-
->>>>>>> b851cedafeab1598d1e9745e328241333c70385c
 
   const submitForm = async () => {
     if (selectedPlate && selectedNajiUser) {
@@ -161,18 +138,12 @@ export default function Khalafi() {
   };
 
   useEffect(() => {
-<<<<<<< HEAD
     typeof window !== "undefined" &&
       redirectLink &&
       location.replace(redirectLink);
     orderId &&
       typeof window !== "undefined" &&
       location.replace(`http:localhost:3010/receipt?id="${orderId}`);
-=======
-    typeof window !== 'undefined' && redirectLink && location.replace(redirectLink);
-    orderId &&
-    typeof window !== 'undefined' && location.replace(`http:localhost:3010/receipt?id="${orderId}`);
->>>>>>> b851cedafeab1598d1e9745e328241333c70385c
   }, [redirectLink, orderId]);
 
   const onCloseModal = () => {
