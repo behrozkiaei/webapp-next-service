@@ -1,5 +1,5 @@
 import { AxiosDataResponse } from "@/utils/interfaces";
-import { InternetDto, InternetPackageInterface, chargeDto } from "@/utils/interfaces/charge-internet";
+import { InternetDto, InternetPackageInterface, InternetPackageInterfaceWithKey, chargeDto } from "@/utils/interfaces/charge-internet";
 import { AxiosResponse } from "axios";
 import { axiosInstance, axiosInstanceNoAuth } from "./axios";
 
@@ -96,7 +96,7 @@ export const buyCharge = async (
     }
   };
 
-  export const getPackages = async (): Promise<AxiosDataResponse<InternetPackageInterface[]>>=>{
+  export const getPackages = async (): Promise<AxiosDataResponse<InternetPackageInterfaceWithKey[]>>=>{
     try {
         const response: AxiosResponse = await axiosInstanceNoAuth().get("/Services/getInternetPackages", {
         });

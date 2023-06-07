@@ -25,7 +25,10 @@ export interface InternetPackageInterface {
     unit: string;
     course: string;
     courseRange: string;
-    productId: number;
+    product_id: string;
     date: Date;
   }
-  
+  export interface InternetPackageInterfaceWithKey {
+    key:string,
+    value :InternetPackageInterface[]
+  }

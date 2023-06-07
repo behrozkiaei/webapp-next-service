@@ -47,51 +47,80 @@ export default function Khalafi() {
   const [operatorDefaultValue, setOperatorDefaultValue] = useState<number>(0);
   const [simTypeDefault, setSymTypeDefault] = useState<number>(0);
   const [simTypeColor, setSimTypeColor] = useState<string>("lightblue");
-  const {buyCharge ,buyInternet , isLoading,error ,set,redirectUrl,orderId} = useChargeAndInternetStore()
-  const submitForm = async () => {
-    console.log("submitForm")
-   const  cahrge = chargeOrInternet == "charge" ;
-   cahrge && await buyCharge(
-    {
-      fromWallet: fromWallet ? fromWallet : false,
-      operator: operator?.shortName ?? "MCI",
-      amount: amount,
-      mobile: mobile,
-      charge_type: "normal"
-    }
-   )
-
-   const  internet = chargeOrInternet == "internet" ;
-   internet && await buyInternet(
-    {
-      fromWallet: fromWallet ? fromWallet : false,
-      operator: operator?.shortName ?? "MCI",
-      product_id: "",
-      mobile: mobile,
-      sim_type: selectedSimTypes
-    }
-   )
-  };
-
-  useEffect(()=>{
-    set("redirectUrl" , null)
-    set("orderId" , null)
-  },[])
-
-  useEffect(()=>{
-    if(redirectUrl)
-    window.location.href = redirectUrl
-  },[redirectUrl])
-
-  useEffect(()=>{
-    if(orderId){
-
-    }
-    
-  },[orderId])
+  const [packageIndex, setPackageIndex] = useState<number>(0);
+  const [productIndex,setProductIndex] = useState<number>(0)
+  const [productId,setProductId] = useState<string>("0")
+  const {
+    buyCharge,
+    buyInternet,
+    isLoading,
+    error,
+    set,
+    redirectUrl,
+    orderId,
+    getInternetPackages,
+    internetPackages
+  } = useChargeAndInternetStore();
   const isMdDown = useIsMdDown();
   const chargeOrInternet = useSearchParam("query");
-  console.log(chargeOrInternet);
+  const submitForm = async () => {
+    console.log("submitForm");
+    const cahrge = chargeOrInternet == "charge";
+    cahrge &&
+      (await buyCharge({
+        fromWallet: fromWallet ? fromWallet : false,
+        operator: operator?.shortName ?? "MCI",
+        amount: amount,
+        mobile: mobile,
+        charge_type: "normal",
+      }));
+
+    const internet = chargeOrInternet == "internet";
+    internet &&
+      (await buyInternet({
+        fromWallet: fromWallet ? fromWallet : false,
+        operator: operator?.shortName ?? "MCI",
+        product_id: productId ?? "0",
+        mobile: mobile,
+        sim_type: selectedSimTypes,
+      }));
+  };
+
+  useEffect(() => {
+    set("redirectUrl", null);
+    set("orderId", null);
+  }, []);
+
+  useEffect(() => {
+    set("redirectUrl", null);
+    set("orderId", null);
+  }, []);
+
+  useEffect(() => {
+    if (redirectUrl) window.location.href = redirectUrl;
+  }, [redirectUrl]);
+
+  useEffect(() => {
+    if (orderId) {
+    }
+  }, [orderId]);
+  useEffect(() => {
+    if (chargeOrInternet == "internet") {
+      getInternetPackages();
+    }
+    const getPackages = async () => {
+      await getInternetPackages();
+    };
+  }, [chargeOrInternet]);
+  useEffect(()=>{
+    if(internetPackages){
+    
+      const keys = internetPackages.map(data=>{
+        return data.key
+      })
+      console.log(keys)
+    }
+  },[internetPackages])
   useEffect(() => {
     if (mobile.length == 4) {
       let mobileBlueprint = mobile + "1111111";
@@ -102,6 +131,11 @@ export default function Khalafi() {
       if (operatorData) setSimTypeColor(operatorData?.color!);
     }
   }, [mobile]);
+  useEffect(()=>{
+    if(productIndex >=0 && internetPackages){
+      setProductId(internetPackages[packageIndex].value[productIndex].product_id)
+    }
+  },[productIndex,internetPackages])
   return (
     <>
       {chargeOrInternet && (
@@ -208,17 +242,28 @@ export default function Khalafi() {
                   {!mobileHasError && chargeOrInternet == "internet" && (
                     <div className="d-flex justify-start align-center mt-4 px-1 full-width">
                       <ScrollableButtonList
-                        buttons={["یکماهه", "ساعتی", "هفتگی", "سالانه"]}
+                        buttons={internetPackages?.map(data=>{
+                          return data.key
+                        }) ?? []}
                         buttonWidth={100}
                         buttonMaxWidth={150}
+                        onClick={(index)=>{
+                          setPackageIndex(index)
+                        }}
                       />
                     </div>
                   )}
-                  {!mobileHasError && chargeOrInternet == "internet" && (
+                  {!mobileHasError && chargeOrInternet == "internet" && internetPackages && (
                     <div className="d-flex justify-start align-center my-1 px-2 full-width">
                       <ScrollableButtonListVertical
-                        buttons={packages}
+                        buttons={internetPackages[packageIndex].value ?? [] }
                         height={200}
+                        onClick={(index)=>{
+
+                          console.log(index)
+                      
+                          setProductIndex(index)
+                        }}
                       />
                     </div>
                   )}
@@ -244,7 +289,7 @@ export default function Khalafi() {
                         disabled={isLoading}
                         isLoading={isLoading}
                         forceAuth={false}
-                        fromWallet={isLoggedIn ?  fromWallet : false}
+                        fromWallet={isLoggedIn ? fromWallet : false}
                         onClick={submitForm}
                       />
                     </div>

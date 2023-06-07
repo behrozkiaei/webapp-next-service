@@ -11,6 +11,7 @@ import { AxiosDataResponse, User } from "@/utils/interfaces";
 import {
   InternetDto,
   InternetPackageInterface,
+  InternetPackageInterfaceWithKey,
   chargeDto,
 } from "@/utils/interfaces/charge-internet";
 import { StringMappingType } from "typescript";
@@ -28,7 +29,7 @@ export interface ChargeAndInternetStoreInterface {
   error: string;
   redirectUrl?: string;
   orderId?: string;
-  internetOackages?: InternetPackageInterface[];
+  internetPackages?: InternetPackageInterfaceWithKey[];
   set: (key: keyof ChargeAndInternetStoreInterface, value: any) => void;
   get: (key: keyof ChargeAndInternetStoreInterface) => any;
   buyCharge: (payload: chargeDto) => Promise<void>;
@@ -142,7 +143,7 @@ const useChargeAndInternetStore = create<ChargeAndInternetStoreInterface>(
         console.log(res);
         set((state) => ({
           ...state,
-          internetOackages: res.result,
+          internetPackages: res.result,
         }));
         console.log(get());
       } catch (e) {
