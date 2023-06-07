@@ -8,7 +8,7 @@ export default function TopMenu() {
         <div className="row my-0">
           <div className="social-medias py-2 col col-6">
             <a
-              href="https://www.linkedin.com/company/itoll"
+              href="https://www.linkedin.com/company/"
               aria-label="linkedin"
               target="_blank"
               className="ml-3"
@@ -22,7 +22,7 @@ export default function TopMenu() {
               />
             </a>
             <a
-              href="https://twitter.com/itoll_ir"
+              href="https://twitter.com/"
               aria-label="twitter"
               target="_blank"
               className="ml-3"
@@ -36,7 +36,7 @@ export default function TopMenu() {
               />
             </a>
             <a
-              href="https://www.instagram.com/itoll.ir"
+              href="https://www.instagram.com/"
               aria-label="instagram"
               target="_blank"
             >
@@ -51,7 +51,7 @@ export default function TopMenu() {
           </div>
           <div className="py-2 col-sm-6 col-12">
             <div className="support d-flex align-center">
-              <span>پشتیبانی شبانه روزی های</span>
+            <span>پشتیبانی </span>
               <span className="splitter mx-4" />
               <a href="tel:02168207" className="tel">
                 <Image
@@ -61,7 +61,7 @@ export default function TopMenu() {
                   height={16}
                   className="mr-1"
                 />{" "}
-                021 - 68207{" "}
+                021-89710001(100 - 101)
               </a>
             </div>
           </div>

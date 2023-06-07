@@ -28930,3 +28930,9 @@ html {overflow: -moz-scrollbars-none;}
   width: 0px;  /* remove scrollbar space */
   background: transparent;  /* optional: just make scrollbar invisible */
 }
+
+.quick-access-section .services-collection .service-card img {
+ 
+  width: 24px !important;
+  height: 24px !important;
+}

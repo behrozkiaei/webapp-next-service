@@ -8,12 +8,12 @@ export default function ServicesSection() {
       <div className="services-collection ">
         <ServiceButton
           alt="استعلام و پرداخت خلافی خودرو"
-          src="./icons/Police-penalty.svg"
+          src="./icons/car.svg"
           text="خلافی خودرو"
           href="/query/khalafi"
           title="استعلام و پرداخت خلافی خودرو"
         ></ServiceButton>
-        <ServiceButton
+        {/* <ServiceButton
           href="/query/tehran"
           title="استعلام و پرداخت عوارض آزادراهی آنیرو و تهران شمال"
           src="./icons/My-Tehran.svg"
@@ -41,7 +41,7 @@ export default function ServicesSection() {
           src="./icons/car-transfer-tax.svg"
           alt="مالیات نقل و انتقال خودرو"
           text="مالیات نقل و انتقال خودرو"
-        />
+        /> */}
       </div>
     </div>
   );

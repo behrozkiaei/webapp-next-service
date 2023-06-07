@@ -17,31 +17,31 @@ function Footer() {
                     <span> خدمات های </span>
                   </div>
                   <div className="col col-3">
-                    <Link href="/query/khalafi" id="footer_pay_khalafi">
+                     <Link scroll={false} href="/query/khalafi" id="footer_pay_khalafi">
                       {" "}
                       استعلام خلافی{" "}
                     </Link>
                   </div>
                   <div className="col col-3">
-                    <Link href="/query/freeway" id="footer_freeway_toll">
+                     <Link scroll={false} href="/query/freeway" id="footer_freeway_toll">
                       {" "}
                       عوارض آزادراهی آنیرو{" "}
                     </Link>
                   </div>
                   <div className="col col-3">
-                    <Link href="/query/annual" id="footer_annual_toll">
+                     <Link scroll={false} href="/query/annual" id="footer_annual_toll">
                       {" "}
                       عوارض خودرو (سالیانه){" "}
                     </Link>
                   </div>
                   <div className="col col-3">
-                    <Link href="/query/tehran" id="footer_my_tehran">
+                     <Link scroll={false} href="/query/tehran" id="footer_my_tehran">
                       {" "}
                       عوارض طرح ترافیک{" "}
                     </Link>
                   </div>
                   <div className="col col-3">
-                    <Link
+                     <Link scroll={false}
                       href="/query/freeway-tehran-shomal"
                       id="footer-freeway-tehran-shomal"
                     >
@@ -50,7 +50,7 @@ function Footer() {
                     </Link>
                   </div>
                   <div className="col col-3">
-                    <Link
+                     <Link scroll={false}
                       href="/query/car-transfer-tax"
                       id="footer-car-transfer-tax"
                     >
@@ -59,7 +59,7 @@ function Footer() {
                     </Link>
                   </div>
                   <div className="col col-3">
-                    <Link
+                     <Link scroll={false}
                       href="/"
                       aria-current="page"
                       id="footer-marginal-park"
@@ -70,13 +70,13 @@ function Footer() {
                     </Link>
                   </div>
                   <div className="col col-3">
-                    <Link href="/query/b2b" id="footer-b2b">
+                     <Link scroll={false} href="/query/b2b" id="footer-b2b">
                       {" "}
                       همکاری با های{" "}
                     </Link>
                   </div>
                   <div className="col col-3">
-                    <Link
+                     <Link scroll={false}
                       href="/insurance/car/third-party"
                       id="footer_insurance"
                     >
@@ -85,13 +85,13 @@ function Footer() {
                     </Link>
                   </div>
                   <div className="col col-3">
-                    <Link href="/insurance/car/body" id="footer_insurance_body">
+                     <Link scroll={false} href="/insurance/car/body" id="footer_insurance_body">
                       {" "}
                       بیمه بدنه خودرو{" "}
                     </Link>
                   </div>
                   <div className="col col-3">
-                    <Link
+                     <Link scroll={false}
                       href="/insurance/motorcycle/third-party"
                       id="footer_insurance_motor"
                     >
@@ -100,13 +100,13 @@ function Footer() {
                     </Link>
                   </div>
                   <div className="col col-3">
-                    <Link href="/supplier" id="footer_supplier">
+                     <Link scroll={false} href="/supplier" id="footer_supplier">
                       {" "}
                       همکاری با تامین کنندگان{" "}
                     </Link>
                   </div>
                   <div className="col col-3">
-                    <Link
+                     <Link scroll={false}
                       href="/insurance/car/third-party"
                       id="footer_insurance_instalment"
                     >
@@ -115,7 +115,7 @@ function Footer() {
                     </Link>
                   </div>
                   <div className="col col-3">
-                    <Link
+                     <Link scroll={false}
                       href="/carpardaz/car-clearance"
                       id="footer_carpardaz_car-clearance"
                     >
@@ -124,7 +124,7 @@ function Footer() {
                     </Link>
                   </div>
                   <div className="col col-3">
-                    <Link
+                     <Link scroll={false}
                       href="/carpardaz/technical-inspection"
                       id="footer_carpardaz_technical-inspection"
                     >
@@ -133,7 +133,7 @@ function Footer() {
                     </Link>
                   </div>
                   <div className="col col-3">
-                    <Link
+                     <Link scroll={false}
                       href="/carpardaz/license-replacement"
                       id="footer_carpardaz_license-replacement"
                     >
@@ -142,7 +142,7 @@ function Footer() {
                     </Link>
                   </div>
                   <div className="col col-3">
-                    <Link
+                     <Link scroll={false}
                       href="/technical-inspection"
                       id="footer_carpardaz_technical-inspection-reservation"
                     >
@@ -151,13 +151,13 @@ function Footer() {
                     </Link>
                   </div>
                   <div className="col col-3">
-                    <Link href="/carpardaz" id="footer_carpardaz">
+                     <Link scroll={false} href="/carpardaz" id="footer_carpardaz">
                       {" "}
                       کارپرداز{" "}
                     </Link>
                   </div>
                   <div className="col col-3">
-                    <Link
+                     <Link scroll={false}
                       href="/police-penalty/motor/detail"
                       id="footer_motor_cycle_police_penalty"
                     >
@@ -166,7 +166,7 @@ function Footer() {
                     </Link>
                   </div>
                   <div className="col col-3">
-                    <Link href="/service/car-price" id="footer_car_price">
+                     <Link scroll={false} href="/service/car-price" id="footer_car_price">
                       {" "}
                       قیمت خودرو{" "}
                     </Link>
@@ -179,7 +179,7 @@ function Footer() {
                     <span> پیوندها </span>
                   </div>
                   <div className="col-md-12 col-3">
-                    <Link
+                     <Link scroll={false}
                       id="footer_news"
                       target="_blank"
                       href="https://itoll.com/news/"
@@ -189,31 +189,31 @@ function Footer() {
                     </Link>
                   </div>
                   <div className="col-md-12 col-3">
-                    <Link href="/terms" id="legal_rules">
+                     <Link scroll={false} href="/terms" id="legal_rules">
                       {" "}
                       قوانین و مقررات{" "}
                     </Link>
                   </div>
                   <div className="col-md-12 col-3">
-                    <Link href="/about/itoll" id="footer_aboutus">
+                     <Link scroll={false} href="/about/itoll" id="footer_aboutus">
                       {" "}
                       درباره های{" "}
                     </Link>
                   </div>
                   <div className="col-md-12 col-3">
-                    <Link href="/contact" id="footer_contact_us">
+                     <Link scroll={false} href="/contact" id="footer_contact_us">
                       {" "}
                       تماس با ما{" "}
                     </Link>
                   </div>
                   <div className="col-md-12 col-3">
-                    <Link href="/jobs" id="footer_jobs">
+                     <Link scroll={false} href="/jobs" id="footer_jobs">
                       {" "}
                       فرصت‌های شغلی{" "}
                     </Link>
                   </div>
                   <div className="col-md-12 col-3">
-                    <Link href="https://r.itoll.com/gn5ru" download="">
+                     <Link scroll={false} href="https://r.itoll.com/gn5ru" download="">
                       {" "}
                       سالنامه های{" "}
                     </Link>
@@ -221,13 +221,13 @@ function Footer() {
                 </div>
               </div>
 
-              <div className="order-sm-3 col col-12 order-2">
+              {/* <div className="order-sm-3 col col-12 order-2">
                 <div className="row">
                   <div className="footer-title col col-12">
                     <span> دانلود اپلیکیشن </span>
                   </div>
                   <div className="col-sm-3 col-md-2 col-6">
-                    <Link
+                     <Link scroll={false}
                       id="bazar-download"
                       href="https://r.itoll.com/footerbazar"
                       target="_blank"
@@ -243,7 +243,7 @@ function Footer() {
                     </Link>
                   </div>
                   <div className="col-sm-3 col-md-2 col-6">
-                    <Link
+                     <Link scroll={false}
                       id="googleplay-download"
                       href="https://r.itoll.com/footergplay"
                       target="_blank"
@@ -260,7 +260,7 @@ function Footer() {
                   </div>
 
                   <div className="col-sm-3 col-md-2 col-6">
-                    <Link
+                     <Link scroll={false}
                       id="direct-download"
                       href="https://r.itoll.com/footerapp"
                       target="_blank"
@@ -276,15 +276,14 @@ function Footer() {
                     </Link>
                   </div>
                 </div>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>
         <div className="row">
           <div className="text-center mt-4 col col-12">
             <p>
-              تمامی حقوق مادی و معنوی این سایت محفوظ و مربوط به شرکت کیان افق
-              هیربد است.
+              تمامی حقوق مادی و معنوی این سایت محفوظ و مربوط به شرکت رویان ایده امید کیش است.
             </p>
           </div>
         </div>

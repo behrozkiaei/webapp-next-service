@@ -154,7 +154,6 @@ export default function Khalafi() {
   };
   return (
     <>
- 
       <title>
         های؛ خدمات یکپارچه خودرو، استعلام و پرداخت عوارض و بیمه ماشین
       </title>
@@ -193,7 +192,7 @@ export default function Khalafi() {
                     ></PlateWrapper>
                   </div>
 
-                  <div className=" d-flex justify-center align-center mt-4 full-width">
+                   <div className=" d-flex justify-center align-center mt-4 full-width">
                     <MyInput
                       value={mobile}
                       onChange={(data) => {
@@ -288,12 +287,12 @@ export default function Khalafi() {
                       text="استعلام خلافی   تومان 5,000"
                       width="100%"
                       height="40px"
-                      fromWallet ={isLoggedIn? false : fromWallet ?? false}
+                      fromWallet={isLoggedIn ? false : fromWallet ?? false}
                       disabled={!selectedNajiUser || (!selectedPlate && !plate)}
                       isLoading={isLoading}
                       onClick={submitForm}
                     />
-                  </div>
+                  </div> 
                 </div>
               </PageWrapper>
             </div>

@@ -10,6 +10,8 @@ import TopFooter from "@/components/top-footer";
 import TopMenu from "@/components/top-menu";
 
 import Image from "next/image";
+import SimServices from "@/components/sim-services";
+import BillServices from "@/components/bill-services";
 
 export default function Page() {
   return (
@@ -42,26 +44,39 @@ export default function Page() {
                     }}
                   >
                     <div className="v-main__wrap">
-                      <div className="slider " >
+                      <div className="slider ">
                         <LandingSwiper></LandingSwiper>
                       </div>
                       <div className="container transform-top">
                         <div className="row plate-frame">
                           <div className="mdAndUp col col-6">
-                            <h1>های؛ همه خدمات خودرو</h1>
+                            <h1>های؛ همه خدمات </h1>
                             <p>
-                              پلاک خود را وارد کرده، از وضعیت پرداختی‌های
-                              خودرویتان مطلع شوید.
+                              به راحتی پلاک خودرو خود را ذخیره کنید تا از پرداختی های خود مطلع شوید
                             </p>
                           </div>
                           <div className="d-flex justify-end col-md-6 col-12">
-                            <PlateWrapper title="مشاهده اطلاعات خودرو با ثبت پلاک:"></PlateWrapper>
+                            <PlateWrapper title=""></PlateWrapper>
                           </div>
                         </div>
                       </div>
                       <div className="quick-access-section">
                         <div className="container">
                           <div className="row service-wrapper">
+                            <div className="col col-12">
+                              <div className="title-section">
+                                <div className="text-dot" />
+                                <h2>خدمات سیم کارت</h2>
+                              </div>
+                              <SimServices />
+                            </div>
+                            <div className="col col-12">
+                              <div className="title-section">
+                                <div className="text-dot" />
+                                <h2>خدمات قبوض</h2>
+                              </div>
+                              <BillServices />
+                            </div>
                             <div className="col col-12">
                               <div className="title-section">
                                 <div className="text-dot" />
@@ -79,7 +94,7 @@ export default function Page() {
                           </div>
                         </div>
                       </div>
-                      <div className="container">
+                      {/* <div className="container">
                         <a id="static-banner" href="#" target="_blank">
                           <div>
                             <Image
@@ -91,8 +106,8 @@ export default function Page() {
                             />
                           </div>
                         </a>
-                      </div>
-                      <MainPageDesc />
+                      </div> */}
+                      {/* <MainPageDesc /> */}
                     </div>
                   </main>
                 </div>

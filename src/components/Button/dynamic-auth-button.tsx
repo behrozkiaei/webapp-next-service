@@ -31,6 +31,7 @@ const DynamicAuthedButton: React.FC<MyButtonProps> = ({
 }) => {
   const [walletMode, setWalletMode] = useState<boolean>(fromWallet);
   useEffect(() => {
+    console.log(fromWallet)
     setWalletMode(fromWallet);
   }, [fromWallet]);
   const { isLoading: AuthLoading, isLoggedIn ,result} = useAuthStore();
@@ -49,7 +50,6 @@ const DynamicAuthedButton: React.FC<MyButtonProps> = ({
     setLoginModalOpen((prev: boolean) => get("isBottomSheetOpen"));
   }, [get("isBottomSheetOpen")]);
   const closeLoginModal = () => {
-    // chagneState && chagneState(!isLoginModalOpen)
     setLoginModalOpen((prev: boolean) => false);
   };
   const closeCanTransactionModal =  () => {
@@ -69,9 +69,11 @@ const DynamicAuthedButton: React.FC<MyButtonProps> = ({
       setLoginModalOpen(true);
       return ;
     }
-    if (isLoggedIn && forceAuth) {
+    if (isLoggedIn) {
+      console.log(isLoggedIn ,walletMode )
       if (walletMode) {
         const canTransaction = await getCache("canTransaction");
+        console.log("canTransaction" ,canTransaction)
         if (!canTransaction) {
           setCanTransactionModal(true);
           return ; 

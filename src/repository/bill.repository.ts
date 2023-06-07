@@ -18,7 +18,7 @@ export const checkBillNNotAuthed = async (
     const response: AxiosResponse = await axiosInstanceNoAuth().post(
       "bill-no-auth/inquiry-by-pay-id-and-bill-id",
       {
-        dto,
+        ...dto,
       }
     );
 
@@ -43,7 +43,7 @@ export const payBillNNotAuthed = async (
     const response: AxiosResponse = await axiosInstanceNoAuth().post(
       "bill-no-auth/pay-by-pay-id-bill-id",
       {
-        dto,
+        ...dto,
       }
     );
 
@@ -68,7 +68,7 @@ export const inquiryBillAuthed = async (
     const response: AxiosResponse = await axiosInstance().post(
       "bill/inquiry-bill-amount",
       {
-        dto,
+        ...dto,
       }
     );
 
@@ -94,7 +94,7 @@ export const payBillAuthed = async (
     const response: AxiosResponse = await axiosInstance().post(
       "bill/pay-bill-authed",
       {
-        dto,
+        ...dto,
       }
     );
 

@@ -20,6 +20,7 @@ import {
   SimTypes,
 } from "@/utils/enums/charge-internet";
 import {
+  OperatorTypeInterface,
   amountBaseOnOperator,
   amounts,
   findOperator,
@@ -28,25 +29,72 @@ import {
   simTypes,
 } from "@/utils/heplers/operator-finder";
 import { addCommas } from "@persian-tools/persian-tools";
+import { channel } from "diagnostics_channel";
 import { useEffect, useRef, useState } from "react";
-
+import { useSearchParam } from "react-use";
+import Skeleton from "@mui/material/Skeleton";
+import DynamicAuthedButton from "@/components/Button/dynamic-auth-button";
+import useChargeAndInternetStore from "@/store/charge-internet";
 export default function Khalafi() {
   const [mobile, setMobile] = useState<string>("");
   const mobileRef = useRef<HTMLInputElement>(null);
   const [selectedSimTypes, setSimType] = useState<string>("");
   const [amount, setAmount] = useState<string>(amounts[0].value);
   const [fromWallet, setPayment] = useState<boolean>(false);
-  const [operator, setOperator] = useState<string>("");
+  const [operator, setOperator] = useState<OperatorTypeInterface>();
   const [mobileHasError, setMobileError] = useState<boolean>(true);
   const { isLoggedIn } = useAuthStore();
   const [operatorDefaultValue, setOperatorDefaultValue] = useState<number>(0);
   const [simTypeDefault, setSymTypeDefault] = useState<number>(0);
   const [simTypeColor, setSimTypeColor] = useState<string>("lightblue");
-  const submitForm = async () => {};
-  const  isMdDown = useIsMdDown();
+  const {buyCharge ,buyInternet , isLoading,error ,set,redirectUrl,orderId} = useChargeAndInternetStore()
+  const submitForm = async () => {
+    console.log("submitForm")
+   const  cahrge = chargeOrInternet == "charge" ;
+   cahrge && await buyCharge(
+    {
+      fromWallet: fromWallet ? fromWallet : false,
+      operator: operator?.shortName ?? "MCI",
+      amount: amount,
+      mobile: mobile,
+      charge_type: "normal"
+    }
+   )
+
+   const  internet = chargeOrInternet == "internet" ;
+   internet && await buyInternet(
+    {
+      fromWallet: fromWallet ? fromWallet : false,
+      operator: operator?.shortName ?? "MCI",
+      product_id: "",
+      mobile: mobile,
+      sim_type: selectedSimTypes
+    }
+   )
+  };
+
+  useEffect(()=>{
+    set("redirectUrl" , null)
+    set("orderId" , null)
+  },[])
+
+  useEffect(()=>{
+    if(redirectUrl)
+    window.location.href = redirectUrl
+  },[redirectUrl])
+
+  useEffect(()=>{
+    if(orderId){
+
+    }
+    
+  },[orderId])
+  const isMdDown = useIsMdDown();
+  const chargeOrInternet = useSearchParam("query");
+  console.log(chargeOrInternet);
   useEffect(() => {
     if (mobile.length == 4) {
-      let mobileBlueprint = mobile+"1111111"
+      let mobileBlueprint = mobile + "1111111";
       console.log(mobileBlueprint);
       const operatorData = findOperator(mobileBlueprint);
       if (operatorData) setOperatorDefaultValue(operatorData.index);
@@ -56,7 +104,10 @@ export default function Khalafi() {
   }, [mobile]);
   return (
     <>
-      <title>خرید شارژ و اینترنت</title>
+      {chargeOrInternet && (
+        <title>خرید ${chargeOrInternet == "charge" ? "شارژ" : "اینترنت"}</title>
+      )}
+
       <div>
         <div className="--is-rtl theme--light">
           <div className="v-application--wrap">
@@ -72,7 +123,13 @@ export default function Khalafi() {
               </div>
 
               <PageWrapper
-                title={`خرید شارژ`}
+                title={
+                  chargeOrInternet
+                    ? `خرید ${
+                        chargeOrInternet == "charge" ? "شارژ" : "اینترنت"
+                      }`
+                    : ""
+                }
                 desc1={`
                     شماره تماس خود را وارد کنید
                   `}
@@ -81,7 +138,11 @@ export default function Khalafi() {
                   style={{ width: "100%", maxWidth: "400px" }}
                   className="full-width"
                 >
-                  <div className={`d-flex justify-center align-center ${isMdDown ? "":"mt-4"}  full-width`}>
+                  <div
+                    className={`d-flex justify-center align-center ${
+                      isMdDown ? "" : "mt-4"
+                    }  full-width`}
+                  >
                     <MyInput
                       value={mobile}
                       onChange={(data) => {
@@ -102,12 +163,12 @@ export default function Khalafi() {
                   </div>
                   {!mobileHasError && (
                     <div className=" d-flex justify-space-between align-center mt-4 full-width">
-                      <p className="mid_gray--text ">نوع سیم کارت:</p>
+                      <p className="mid_gray--text ">نام اپراتور:</p>
                       <MyButtonGroup
                         buttons={operatorType}
                         defaultValue={operatorDefaultValue}
                         onSelect={(value) => {
-                          setSimType(value.value);
+                          setOperator(value as OperatorTypeInterface);
                           console.log(value);
                           setSimTypeColor(value.color);
                         }}
@@ -117,7 +178,7 @@ export default function Khalafi() {
 
                   {!mobileHasError && (
                     <div className=" d-flex justify-space-between align-center mt-4 full-width">
-                      <p className="mid_gray--text ">نام اوپراتور:</p>
+                      <p className="mid_gray--text ">نوع سیم کارت:</p>
                       <MyButtonGroup
                         buttons={simTypes}
                         selectedColor={simTypeColor}
@@ -129,12 +190,12 @@ export default function Khalafi() {
                     </div>
                   )}
 
-                  {!mobileHasError && (
+                  {!mobileHasError && chargeOrInternet == "charge" && (
                     <>
                       <div className=" d-flex justify-space-between align-center mt-4 full-width">
                         <p className="mid_gray--text ">مبلغ به ریال:</p>
                         <MyButtonGroup
-                          buttons={amountBaseOnOperator(operator)}
+                          buttons={amountBaseOnOperator(operator?.value!)}
                           selectedColor={simTypeColor}
                           defaultValue={0}
                           onSelect={(value) => {
@@ -144,7 +205,7 @@ export default function Khalafi() {
                       </div>
                     </>
                   )}
-                  {isLoggedIn && !mobileHasError && (
+                  {!mobileHasError && chargeOrInternet == "internet" && (
                     <div className="d-flex justify-start align-center mt-4 px-1 full-width">
                       <ScrollableButtonList
                         buttons={["یکماهه", "ساعتی", "هفتگی", "سالانه"]}
@@ -153,7 +214,7 @@ export default function Khalafi() {
                       />
                     </div>
                   )}
-                  {isLoggedIn && !mobileHasError && (
+                  {!mobileHasError && chargeOrInternet == "internet" && (
                     <div className="d-flex justify-start align-center my-1 px-2 full-width">
                       <ScrollableButtonListVertical
                         buttons={packages}
@@ -171,17 +232,19 @@ export default function Khalafi() {
                       />
                     </div>
                   )}
-                  {isLoggedIn && !mobileHasError && amount && (
+                  {!mobileHasError && amount && (
                     <div
                       style={{ marginTop: "20px" }}
                       className="full-width d-flex justify-center"
                     >
-                      <MyButton
-                        text="پرداخت"
+                      <DynamicAuthedButton
+                        text="خرید"
                         width="100%"
                         height="40px"
-                        disabled={false}
-                        isLoading={false}
+                        disabled={isLoading}
+                        isLoading={isLoading}
+                        forceAuth={false}
+                        fromWallet={isLoggedIn ?  fromWallet : false}
                         onClick={submitForm}
                       />
                     </div>

@@ -1,6 +1,7 @@
 import { addCommas, phoneNumberDetail } from "@persian-tools/persian-tools";
 import {
   OperatorColors,
+  OperatorShortName,
   OperatorType,
   SimTypes,
 } from "../enums/charge-internet";
@@ -74,21 +75,37 @@ export const simTypes = [
     value: SimTypes.DAEMI,
   },
 ];
+export interface SimTypeInterface{
+  
+    content: string
+    color: string
+    value: SimTypes,
+  
+}
+export interface OperatorTypeInterface{
+  content: string,
+  color: OperatorColors,
+  value: OperatorType,
+  shortName: OperatorShortName,
+}
 export const operatorType = [
   {
     content: "همراه اول",
     color: OperatorColors.Hamrah,
     value: OperatorType.Hamrah,
+    shortName: OperatorShortName.MCI,
   },
   {
     content: "ایرانسل",
     color: OperatorColors.Irancel,
     value: OperatorType.Irancel,
+    shortName: OperatorShortName.MTN,
   },
   {
     content: "رایتل",
     color: OperatorColors.Rightel,
     value: OperatorType.Rightel,
+    shortName: OperatorShortName.RTL,
   },
 ];
 export const amountBaseOnOperator = (operator :string)=>{
@@ -163,7 +180,7 @@ export const amountsHamrah = [
     value: "5000",
   },
   {
-    content: addCommas(1000),
+    content: addCommas(10000),
     color: OperatorColors.Hamrah,
     value: "10000",
   },

@@ -51,7 +51,7 @@ export default function TopMenu() {
           </div>
           <div className="py-2 col-sm-6 col-12">
             <div className="support d-flex align-center">
-              <span>پشتیبانی شبانه روزی های</span>
+              <span>پشتیبانی های</span>
               <span className="splitter mx-4" />
               <a href="tel:02168207" className="tel">
                 <Image
@@ -61,7 +61,7 @@ export default function TopMenu() {
                   height={16}
                   className="mr-1"
                 />{" "}
-                021 - 68207{" "}
+                  021-89710001(100 - 101)
               </a>
             </div>
           </div>

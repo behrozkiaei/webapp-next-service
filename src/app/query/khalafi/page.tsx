@@ -94,7 +94,7 @@ export default function Khalafi() {
                                 price= "5,200 تومان"
                                 buttonText=" پرداخت با قبض "
                                 disabled ={false}
-                                link="/query/khalafi/bill"
+                                link="/bill/bill-check"
                                 isLoading={false}
                                 onclick={()=>null }
                               />

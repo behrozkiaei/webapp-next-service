@@ -12,9 +12,10 @@ interface MyButtonGroupProps {
   defaultValue:number;
   selectedColor?: string;
   onSelect :(value:{
-    content: string | number;
+    content: string | number | any;
     color: string;
-    value :string
+    value :string;
+    shortName?:string
   })=>void
 }
 

@@ -9,7 +9,7 @@ export const buyCharge = async (
   ): Promise<AxiosDataResponse<any>> => {
     try {
       const response: AxiosResponse = await axiosInstance().post("/transaction/buyCharge", {
-        dto,
+        ...dto,
       });
   
       if (response.status == 200 || response.status == 201)
@@ -32,7 +32,7 @@ export const buyCharge = async (
   ): Promise<AxiosDataResponse<any>> => {
     try {
       const response: AxiosResponse = await axiosInstance().post("/transaction/buyInternet", {
-        dto,
+        ...dto,
       });
   
       if (response.status == 200 || response.status == 201)
@@ -55,7 +55,7 @@ export const buyCharge = async (
   ): Promise<AxiosDataResponse<any>> => {
     try {
       const response: AxiosResponse = await axiosInstanceNoAuth().post("/Services/buy-internet-no-auth", {
-        dto,
+        ...dto,
       });
   
       if (response.status == 200 || response.status == 201)
@@ -78,7 +78,7 @@ export const buyCharge = async (
   ): Promise<AxiosDataResponse<any>> => {
     try {
       const response: AxiosResponse = await axiosInstanceNoAuth().post("/Services/buy-charge-no-auth", {
-        dto,
+        ...dto,
       });
   
       if (response.status == 200 || response.status == 201)

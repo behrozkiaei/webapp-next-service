@@ -26,8 +26,7 @@ const   IncreaseAmount : React.FC<IncreaseAmountProp>= ({handleOpen,formtitle })
     if(redirectUrl){
       // location.href=redirectUrl
       window.open(
-        redirectUrl,
-        '_blank' // <- This is what makes it open in a new window.
+        redirectUrl
       );
     }
   },[redirectUrl])

@@ -69,6 +69,7 @@ export enum BillType {
   elec = "elec",
   gas = "gas",
   water = "water",
+  billId = "billId",
 }
 export enum Period {
   mid = "mid",

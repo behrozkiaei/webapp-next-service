@@ -1,19 +1,29 @@
 "use client";
-import Image from "next/image";
-import "../globals.css";
-import Link from "next/link";
-import LoginButton from "./login-button";
+import { logOut } from "@/logic/login.logic";
 import useAuthStore from "@/store/login";
+import useStateStore from "@/store/ui-state.store";
+import AccountBalanceWalletIcon from "@mui/icons-material/AccountBalanceWallet";
+import ExitToAppIcon from "@mui/icons-material/ExitToApp";
+import AppBar from "@mui/material/AppBar";
+import Avatar from "@mui/material/Avatar";
+import IconButton from "@mui/material/IconButton";
+import Typography from "@mui/material/Typography";
+import { styled } from "@mui/material/styles";
+import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
-import { fetchMe, logOut } from "@/logic/login.logic";
-import ExitToApp from "@mui/icons-material/ExitToApp";
+import "../globals.css";
 import useBreakpoint from "./effects/breakpoint-effect";
 import IncreaseButton from "./increse-amount/wallet-increase-button";
-import { addCommas } from "@persian-tools/persian-tools";
-import useStateStore from "@/store/ui-state.store";
+import LoginButton from "./login-button";
+
 export interface HeaderPropInterface {
   isTransparent?: boolean;
 }
+const TransparentAppBar = styled(AppBar)(({ theme }) => ({
+  backgroundColor: "transparent",
+  boxShadow: "none",
+}));
+
 const Header: React.FC<HeaderPropInterface> = ({ isTransparent = false }) => {
   const { isLoggedIn, result, set } = useAuthStore();
   const breakpoint = useBreakpoint();
@@ -80,43 +90,33 @@ const Header: React.FC<HeaderPropInterface> = ({ isTransparent = false }) => {
                 {isLoggedIn && <IncreaseButton />}
 
                 {isLoggedIn && (
-                  <div className="login-user">
-                    <Image
+                  <>
+                    <Avatar
                       src="/icons/ProfileCircleWhite.svg"
-                      alt="پروفایل"
-                      loading="lazy"
-                      className="ml-2 mr-2"
-                      width="32"
-                      height="32"
-                      style={{
-                        filter: isTransparent
-                          ? "invert(42%) sepia(93%) saturate(1352%) hue-rotate(87deg) brightness(119%) contrast(119%)"
-                          : "invert(42%) sepia(93%) saturate(1352%) hue-rotate(87deg) brightness(119%) contrast(119%)",
-                      }}
+                      sx={{ mr: 2 , width :"20px" , height: "20px"}}
                     />
-                    {/* <span
-                      className={`user-mobile ${isTransparent} ? "white--text" : "" mt-1`}
+                    <Typography
+                       component="p"
+                       sx={{ fontSize: '0.75rem' }}
+                    
                     >
                       {result?.mobile}
-                    </span> */}
-                    {/* <div className="splitter mx-2" /> */}
-                    {isLoggedIn && (
-                      <p style={{ width: "200px" }}>
-                        موجودی ولت : 
-                        <span>{`${
-                          parseFloat(result?.Wallet.amount!) < 0 ? "-" : ""
-                        }
-                         ${addCommas(
-                           Math.abs(
-                             parseFloat(result?.Wallet.amount!)
-                           ).toString()
-                         )} ریال`}</span>
-                      </p>
-                    )}
-                    <div className="mt-1 pointer " onClick={Logout}>
-                      <ExitToApp />
-                    </div>
-                  </div>
+                    </Typography>
+                    <IconButton size="small">
+                      <AccountBalanceWalletIcon color="primary" />
+                    </IconButton>
+                    <Typography  component="p"
+                       sx={{ fontSize: '0.75rem' }}>
+                      {parseFloat(result?.Wallet.amount!) < 0 ? "-" : ""}
+                      {Math.abs(
+                        parseFloat(result?.Wallet.amount!)
+                      ).toLocaleString()}{"ریال"}
+                      
+                    </Typography>
+                    <IconButton size="small"  onClick={Logout}>
+                      <ExitToAppIcon  color="secondary"  />
+                    </IconButton>
+                  </>
                 )}
                 {!isLoggedIn && <LoginButton />}
               </div>

@@ -4,7 +4,7 @@
 import FetchMe from "@/components/fetch-me";
 import { ThemeProvider } from "@emotion/react";
 import { createTheme } from "@mui/material";
-
+import { StrictMode } from "react";
 
 
 const theme = createTheme({
@@ -41,6 +41,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" dir="rtl">
+      <StrictMode>
       <ThemeProvider theme={theme}>
         <body>
           <>
@@ -48,7 +49,9 @@ export default function RootLayout({
             <FetchMe />
           </>
         </body>
+        
       </ThemeProvider>
+        </StrictMode>
     </html>
   );
 }

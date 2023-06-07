@@ -1,3 +1,4 @@
+"use client"; // this is a client component 👈🏽
 import "@/globals.css";
 import TitleDesc from "./title-desc";
 interface MyModalProps {
@@ -12,6 +13,7 @@ const PageWrapper: React.FC<MyModalProps> = ({
   desc1,
   desc2,
 }) => {
+  console.log(title)
   return (
     <main className="d-flex text-center justify-center align-center">
       <div className="container d-flex justify-center align-center">
@@ -20,7 +22,6 @@ const PageWrapper: React.FC<MyModalProps> = ({
             className="d-flex justify-start flex-column align-start"
             style={{ width: "80%" }}
           >
-            {/* <p className="mid_gray--text mb-8"></p> */}
           </div>
           <TitleDesc
             title={title ?? ""}

@@ -52,7 +52,7 @@ const KhalafiDetail: React.FC<KhalafiDetail> = ({
         <div className="row d-flex justify-center align-center ">
           <div className="price col-sm-12 col-md-4 text-center">{price}</div>
           <div className="col-sm12 col-md-8 ">
-            <Link
+             <Link scroll={false}
               href={link ? link : "#"}
               className={`d-flex ${
                 breakpoint == "xs" ? "flex-column" : "flex-row"

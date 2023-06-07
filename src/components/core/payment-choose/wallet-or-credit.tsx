@@ -25,10 +25,7 @@ const WalletOrCredit: React.FC<ButtonSelectorInterface> = ({
   };
   return (
     <>
-     
-      <div
-        className={`d-flex justify-space-around  full-width`}
-      >
+      <div className={`d-flex justify-space-around  full-width`}>
         <Button
           key={1}
           sx={{ width: isMdDown ? "100%" : "50%" }}
@@ -37,7 +34,7 @@ const WalletOrCredit: React.FC<ButtonSelectorInterface> = ({
             marginBottom: "5px",
           }}
           className={`d-flex justify-space-around align-center button-style ${
-            selected === "credit" ? "selected" : "not-selected"
+            selected === "credit" ? "selected-button" : ""
           }`}
           onClick={() => handleButtonClick("credit")}
         >
@@ -52,7 +49,7 @@ const WalletOrCredit: React.FC<ButtonSelectorInterface> = ({
             marginBottom: "5px",
           }}
           className={`d-flex justify-space-around align-center button-style ${
-            selected === "wallet" ? "selected" : "not-selected"
+            selected === "wallet" ? "selected-button" : ""
           }`}
           onClick={() => handleButtonClick("wallet")}
         >

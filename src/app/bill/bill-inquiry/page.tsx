@@ -14,8 +14,13 @@ import "@/globals.css";
 import useBillStore from "@/store/bill.store";
 import useAuthStore from "@/store/login";
 import { OperatorShortName } from "@/utils/enums/charge-internet";
-import { isBillType, translateKey } from "@/utils/heplers/bill.helper";
 import {
+  isBillType,
+  responseValueToFaKey,
+  translateKey,
+} from "@/utils/heplers/bill.helper";
+import {
+  OperatorTypeInterface,
   findOperator,
   operatorType,
   simTypes,
@@ -41,13 +46,14 @@ export default function Khalafi() {
   const [mobileHasError, setMobileError] = useState<boolean>(true);
   const [selectedSimTypes, setSimType] = useState<string>("");
   const [fromWallet, setPayment] = useState<boolean>(false);
-  const [operator, setOperator] = useState<string>("");
+  const [operator, setOperator] = useState<OperatorTypeInterface>();
   const { isLoggedIn } = useAuthStore();
   const [operatorDefaultValue, setOperatorDefaultValue] = useState<number>(-1);
   const [simTypeDefault, setSymTypeDefault] = useState<string>("DAEMI");
   const [simTypeColor, setSimTypeColor] = useState<string>("lightblue");
   const [inquiyMode, setInquiryMode] = useState<BillType | "">("");
-  const { isLoading, billCheckData, inquryBill, set } = useBillStore();
+  const { isLoading, billCheckData, inquryBill, set, checkBill } =
+    useBillStore();
   const isMdDown = useIsMdDown();
 
   const queryModeParam = useSearchParam("query");
@@ -60,7 +66,7 @@ export default function Khalafi() {
     let payload: BillAmountInquiryDto = {
       bill_type: inquiyMode,
       mobile: mobile ?? undefined,
-      operator: OperatorShortName.MCI,
+      operator: operator?.shortName,
       period: Period.mid,
       phone: id ?? undefined,
       bill_id: id ?? undefined,
@@ -72,16 +78,17 @@ export default function Khalafi() {
   useEffect(() => {
     if (queryModeParam) {
       if (isBillType(queryModeParam)) {
+        console.log("billTYo", queryModeParam);
         setInquiryMode(queryModeParam);
       }
     }
   });
   useEffect(() => {
-    backBillCheckData()
-  },[]);
-  const backBillCheckData =()=>{
-    set("billCheckData", null)
-  }
+    backBillCheckData();
+  }, []);
+  const backBillCheckData = () => {
+    set("billCheckData", null);
+  };
   useEffect(() => {
     if (mobile.length == 4) {
       let mobileBlueprint = mobile + "1111111";
@@ -91,6 +98,16 @@ export default function Khalafi() {
       if (operatorData) setSimTypeColor(operatorData?.color!);
     }
   }, [mobile]);
+  const submitPayForm = async () => {
+    const bill_id = billCheckData?.bill_id;
+    const pay_id = billCheckData?.pay_id;
+    if (bill_id && pay_id) {
+      await checkBill({
+        payId: bill_id.toString(),
+        billId: pay_id.toString(),
+      });
+    }
+  };
   return (
     <>
       <title>استعلام {inquiyMode ? translateKey(inquiyMode) : ""}</title>
@@ -110,10 +127,19 @@ export default function Khalafi() {
 
               <PageWrapper
                 title={`استعلام ${translateKey(inquiyMode)}`}
-                desc1={inquiyMode == BillType.mobile ? "شماره موبایل دائمی را وارد کنید:"
-                    : inquiyMode == BillType.water || inquiyMode == BillType.elec ? "شناسه اشترا را وارد کنید:"
-                    : inquiyMode == BillType.phone ? "شماره تلفن را وارد کنید:" :
-                    inquiyMode == BillType.gas ? "شناسه اشتراک کنتور را وارد کنید:" : ""
+                desc1={
+                  billCheckData
+                    ? "پرداخت قبض "
+                    : inquiyMode == BillType.mobile
+                    ? "شماره موبایل دائمی را وارد کنید:"
+                    : inquiyMode == BillType.water ||
+                      inquiyMode == BillType.elec
+                    ? "شناسه اشترا را وارد کنید:"
+                    : inquiyMode == BillType.phone
+                    ? "شماره تلفن را وارد کنید:"
+                    : inquiyMode == BillType.gas
+                    ? "شناسه اشتراک کنتور را وارد کنید:"
+                    : "استعلام به شناسه قبض"
                 }
               >
                 <div
@@ -121,155 +147,145 @@ export default function Khalafi() {
                   className="full-width"
                 >
                   <>
-                    {
-                      <>
-                        {inquiyMode == BillType.mobile && (
-                          <>
-                            <div
-                              className={`d-flex justify-center align-center ${
-                                isMdDown ? "" : "mt-4"
-                              }  full-width`}
-                            >
-                              <MyInput
-                                value={mobile}
-                                onChange={(data) => {
-                                  setMobile(data.value);
-                                  setMobileError(data.hasError);
-                                }}
-                                title="شماره موبایل"
-                                error={""}
-                                placeholder="09*********"
-                                maxLength={11}
-                                minLength={11}
-                                disabled={false}
-                                type="tel"
-                                mode="mobile"
-                                validations={[]}
-                              />
-                            </div>
-                            {operatorDefaultValue>=0 && (
-                              <div className=" d-flex justify-space-between align-center mt-4 full-width">
-                                <p className="mid_gray--text ">نوع سیم کارت:</p>
-                                <MyButtonGroup
-                                  buttons={operatorType}
-                                  defaultValue={operatorDefaultValue}
-                                  onSelect={(value) => {
-                                    setSimType(value.value);
-                                    console.log(value);
-                                    setSimTypeColor(value.color);
-                                  }}
-                                />
-                              </div>
-                            )}
-                            {operatorDefaultValue>=0 && (
-                              <div className=" d-flex justify-space-between align-center mt-4 full-width">
-                                <p className="mid_gray--text ">نوع اوپراتور:</p>
-                                <MyButtonGroup
-                                  buttons={simTypes}
-                                  selectedColor={simTypeColor}
-                                  defaultValue={0}
-                                  onSelect={(value) => {
-                                    setSimType(value.value);
-                                  }}
-                                />
-                              </div>
-                            )}
-                          </>
-                        )}
-                        {inquiyMode != BillType.mobile && (
+                    <>
+                      {inquiyMode == BillType.mobile && (
+                        <>
                           <div
                             className={`d-flex justify-center align-center ${
                               isMdDown ? "" : "mt-4"
                             }  full-width`}
                           >
                             <MyInput
-                              value={id}
+                              value={mobile}
                               onChange={(data) => {
                                 setMobile(data.value);
-                                setBillIdHasError(data.hasError);
+                                setMobileError(data.hasError);
                               }}
-                              title={
-                                inquiyMode == "gas"
-                                  ? "کد اشتراک کنتر"
-                                  : inquiyMode == "phone"
-                                  ? "شماره تلفن به همراه  کد "
-                                  : "شناسه قبض آب برق"
-                              }
+                              title="شماره موبایل"
                               error={""}
-                              placeholder=""
+                              placeholder="09*********"
                               maxLength={11}
-                              minLength={5}
-                              disabled={false}
+                              minLength={11}
+                              disabled={billCheckData ? true : false}
                               type="tel"
-                              mode="number"
+                              mode="mobile"
                               validations={[]}
                             />
                           </div>
-                        )}
-                        {billCheckData && (
-                          <div
-                            className={`d-flex flex-column justify-center align-center ${
-                              isMdDown ? "" : "mt-4"
-                            }  full-width`}
-                          >
-                            <div className="full-width d-flex flex-start" onClick={backBillCheckData}>
-                            <ArrowRight/>
+                          {operatorDefaultValue >= 0 && (
+                            <div className=" d-flex justify-space-between align-center mt-4 full-width">
+                              <p className="mid_gray--text ">نام اپراتور:</p>
+                              <MyButtonGroup
+                                buttons={operatorType}
+                                defaultValue={operatorDefaultValue}
+                                onSelect={(value) => {
+                                  setOperator(value as OperatorTypeInterface);
+                                  setSimTypeColor(value.color);
+                                }}
+                              />
                             </div>
-                            <List>
-                              {Object.keys(billCheckData).map((key) => (
+                          )}
+                        </>
+                      )}
+                      {inquiyMode != BillType.mobile && (
+                        <div
+                          className={`d-flex justify-center align-center ${
+                            isMdDown ? "" : "mt-4"
+                          }  full-width`}
+                        >
+                          <MyInput
+                            value={id}
+                            onChange={(data) => {
+                              setMobile(data.value);
+                              setBillIdHasError(data.hasError);
+                            }}
+                            title={
+                              inquiyMode == "gas"
+                                ? "کد اشتراک کنتر"
+                                : inquiyMode == "phone"
+                                ? "شماره تلفن به همراه  کد "
+                                : "شناسه قبض آب، برق و ..."
+                            }
+                            error={""}
+                            placeholder=""
+                            maxLength={11}
+                            minLength={5}
+                            disabled={billCheckData ? true : false}
+                            type="tel"
+                            mode="number"
+                            validations={[]}
+                          />
+                        </div>
+                      )}
+                    </>
+
+                    {billCheckData && (
+                      <div
+                        className={`d-flex flex-column justify-space-between align-center full-width ${
+                          isMdDown ? "" : "mt-4"
+                        }  full-width`}
+                      >
+                        <List className="full-width">
+                          {Object.keys(billCheckData).map((key) => (
+                            <>
+                              <ListItem
+                                key={key}
+                                className={`d-flex  justify-space-between align-center full-width ${
+                                  isMdDown ? "" : "mt-4"
+                                }  full-width`}
+                              >
                                 <>
-                                  <ListItem
-                                    key={key}
-                                    className={`d-flex  justify-space-between align-center ${
-                                      isMdDown ? "" : "mt-4"
-                                    }  full-width`}
-                                  >
-                                    <>
-                                      <p>{translateKey(key)}</p>
-                                      <p>
-                                        {
-                                          billCheckData[
-                                            key as keyof BillInquiryResponseRepoInterface
-                                          ]
-                                        }
-                                      </p>
-                                    </>
-                                  </ListItem>
-                                  <Divider />
+                                  <p>{translateKey(key)}</p>
+                                  <p>
+                                    {responseValueToFaKey(
+                                      key,
+                                      billCheckData[
+                                        key as keyof BillInquiryResponseRepoInterface
+                                      ]
+                                    )}
+                                  </p>
                                 </>
-                              ))}
-                              <div className="devider"></div>
-                            </List>
-                          </div>
-                        )}
-                        {(isLoggedIn && (!mobileHasError  || !bilIdHassError)) &&  (
-                          <div className="d-flex justify-start align-center mt-4 full-width">
-                            <WalletOrCredit
-                              defaultSelected="credit"
-                              onSelectionChange={(selected) => {
-                                setPayment(selected == "wallet" ? true : false);
-                              }}
-                            />
-                          </div>
-                        )}
-                        {(isLoggedIn && (!mobileHasError  || !bilIdHassError)) &&  (
-                          <div
-                            style={{ marginTop: "20px" }}
-                            className="full-width d-flex justify-center"
-                          >
-                            <DynamicAuthedButton
-                              text="استعلام"
-                              width="100%"
-                              height="40px"
-                              disabled={isLoading}
-                              isLoading={isLoading}
-                              fromWallet={fromWallet}
-                              onClick={submitForm}
-                            />
-                          </div>
-                        )}
-                      </>
-                    }
+                              </ListItem>
+                              <Divider />
+                            </>
+                          ))}
+                          <div className="devider"></div>
+                        </List>
+                      </div>
+                    )}
+
+                    {(!mobileHasError || !bilIdHassError) && !billCheckData && (
+                      <div
+                        style={{ marginTop: "20px" }}
+                        className="full-width d-flex justify-center"
+                      >
+                        <DynamicAuthedButton
+                          text="استعلام"
+                          width="100%"
+                          height="40px"
+                          disabled={isLoading}
+                          isLoading={isLoading}
+                          fromWallet={fromWallet}
+                          onClick={submitForm}
+                        />
+                      </div>
+                    )}
+                    {billCheckData && (
+                      <div
+                        style={{ marginTop: "20px" }}
+                        className="full-width d-flex justify-center"
+                      >
+                        <DynamicAuthedButton
+                          text="پرداخت"
+                          width="100%"
+                          height="40px"
+                          disabled={isLoading}
+                          isLoading={isLoading}
+                          fromWallet={fromWallet}
+                          onClick={submitPayForm}
+                        />
+                      </div>
+                    )}
                   </>
                 </div>
               </PageWrapper>
