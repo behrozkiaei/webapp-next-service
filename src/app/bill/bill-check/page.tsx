@@ -11,13 +11,13 @@ import TopMenu from "@/components/top-menu";
 import "@/globals.css";
 import useBillStore from "@/store/bill.store";
 import useAuthStore from "@/store/login";
-import { translateKey } from "@/utils/heplers/bill.helper";
+import { responseValueToFaKey, translateKey } from "@/utils/heplers/bill.helper";
 import { BillInquiryResponseRepoInterface } from "@/utils/interfaces/bill.interface";
 import Divider from "@mui/material/Divider";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import { useEffect, useState } from "react";
-import { NextSeo } from "next-seo";
+// import { NextSeo } from "next-seo";
 
 export default function Khalafi() {
   const [payId, setPayId] = useState<string>("");
@@ -41,10 +41,10 @@ export default function Khalafi() {
   return (
     <>
       <title>استعلام قبض</title>
-      <NextSeo
+      {/* <NextSeo
       title="نکست سون، خدمات یکپارچه خودرو، قبض و سیم کارت"
       description="نکست سون|  خدمات یکپارچه خودرو، استعلام و پرداخت عوارض و بیمه ماشین"
-    />
+    /> */}
       <div>
         <div className="--is-rtl theme--light">
           <div className="v-application--wrap">
@@ -60,15 +60,11 @@ export default function Khalafi() {
               </div>
 
               <PageWrapper
-                title={`استعلام قبض با شناسه پرداخت`}
-                desc1={`
-                شناسه قبض و شناسه پرداخت را وارد کنید
-                `}
-              >
+                title="استعلام قبض با شناسه پرداخت"
+                desc1="شناسه قبض و شناسه پرداخت را وارد کنید" >
                 <div
                   style={{ width: "100%", maxWidth: "400px" }}
-                  className="full-width"
-                >
+                  className="full-width">
                   {!billCheckData && (
                     <>
                       <div
@@ -147,11 +143,12 @@ export default function Khalafi() {
                               <>
                                 <p>{translateKey(key)}</p>
                                 <p>
-                                  {
-                                    billCheckData[
-                                      key as keyof BillInquiryResponseRepoInterface
-                                    ]
-                                  }
+                                  {responseValueToFaKey(
+                                      key,
+                                      billCheckData[
+                                        key as keyof BillInquiryResponseRepoInterface
+                                      ]
+                                    )}
                                 </p>
                               </>
                             </ListItem>

@@ -25,7 +25,7 @@ import {
 } from "@/utils/heplers/operator-finder";
 import { useEffect, useRef, useState } from "react";
 import { useSearchParam } from "react-use";
-import { NextSeo } from "next-seo";
+// import { NextSeo } from "next-seo";
 export default function Khalafi() {
   const [mobile, setMobile] = useState<string>("");
   const mobileRef = useRef<HTMLInputElement>(null);
@@ -131,10 +131,10 @@ export default function Khalafi() {
   },[productIndex,internetPackages])
   return (
     <>
-      <NextSeo
+      {/* <NextSeo
       title="نکست سون، خدمات یکپارچه خودرو، قبض و سیم کارت"
       description="نکست سون|  خدمات یکپارچه خودرو، استعلام و پرداخت عوارض و بیمه ماشین"
-    />
+    /> */}
       {chargeOrInternet && (
         <title>خرید ${chargeOrInternet == "charge" ? "شارژ" : "اینترنت"}</title>
       )}

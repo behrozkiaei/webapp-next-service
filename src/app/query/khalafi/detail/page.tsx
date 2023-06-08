@@ -21,7 +21,7 @@ import {
   phoneNumberValidator,
   verifyIranianNationalId,
 } from "@persian-tools/persian-tools";
-import { NextSeo } from "next-seo";
+// import { NextSeo } from "next-seo";
 
 import WalletOrCredit from "@/components/core/payment-choose/wallet-or-credit";
 import Mode from "@mui/icons-material/Mode";
@@ -159,10 +159,10 @@ export default function Khalafi() {
       <title>
         های؛ خدمات یکپارچه خودرو، استعلام و پرداخت عوارض و بیمه ماشین
       </title>
-      <NextSeo
+      {/* <NextSeo
       title="نکست سون، خدمات یکپارچه خودرو، قبض و سیم کارت"
       description="نکست سون|  خدمات یکپارچه خودرو، استعلام و پرداخت عوارض و بیمه ماشین"
-    />
+    /> */}
       <div>
         <div className="--is-rtl theme--light">
           <div className="v-application--wrap">
