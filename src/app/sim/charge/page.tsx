@@ -25,6 +25,7 @@ import {
 } from "@/utils/heplers/operator-finder";
 import { useEffect, useRef, useState } from "react";
 import { useSearchParam } from "react-use";
+import { NextSeo } from "next-seo";
 export default function Khalafi() {
   const [mobile, setMobile] = useState<string>("");
   const mobileRef = useRef<HTMLInputElement>(null);

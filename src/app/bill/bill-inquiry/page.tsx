@@ -1,4 +1,4 @@
-// "use client"; // this is a client component 👈🏽
+"use client"; // this is a client component 👈🏽
 import Aside from "@/components/aside";
 import MyButton from "@/components/core/button";
 import MyButtonGroup from "@/components/core/group-button/my-button-group";
