@@ -12,6 +12,7 @@ import TopMenu from "@/components/top-menu";
 import Image from "next/image";
 import SimServices from "@/components/sim-services";
 import BillServices from "@/components/bill-services";
+import { NextSeo } from "next-seo";
 
 export default function Page() {
   return (
@@ -19,6 +20,10 @@ export default function Page() {
       <title>
         های؛ خدمات یکپارچه خودرو، استعلام و پرداخت عوارض و بیمه ماشین
       </title>
+      <NextSeo
+      title="نکست سون، خدمات یکپارچه خودرو، قبض و سیم کارت"
+      description="نکست سون|  خدمات یکپارچه خودرو، استعلام و پرداخت عوارض و بیمه ماشین"
+    />
       <div>
         <div id="__layout">
           <div className="v-application v-application--is-rtl theme--light">

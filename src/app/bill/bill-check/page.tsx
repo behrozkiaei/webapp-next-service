@@ -17,6 +17,8 @@ import Divider from "@mui/material/Divider";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import { useEffect, useState } from "react";
+import { NextSeo } from "next-seo";
+
 export default function Khalafi() {
   const [payId, setPayId] = useState<string>("");
   const [billId, setBillId] = useState<string>("");
@@ -39,6 +41,10 @@ export default function Khalafi() {
   return (
     <>
       <title>استعلام قبض</title>
+      <NextSeo
+      title="نکست سون، خدمات یکپارچه خودرو، قبض و سیم کارت"
+      description="نکست سون|  خدمات یکپارچه خودرو، استعلام و پرداخت عوارض و بیمه ماشین"
+    />
       <div>
         <div className="--is-rtl theme--light">
           <div className="v-application--wrap">

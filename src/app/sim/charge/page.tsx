@@ -1,6 +1,6 @@
 "use client"; // this is a client component 👈🏽
+import DynamicAuthedButton from "@/components/Button/dynamic-auth-button";
 import Aside from "@/components/aside";
-import MyButton from "@/components/core/button";
 import MyButtonGroup from "@/components/core/group-button/my-button-group";
 import MyInput from "@/components/core/my-input";
 import WalletOrCredit from "@/components/core/payment-choose/wallet-or-credit";
@@ -13,28 +13,18 @@ import PageWrapper from "@/components/page-wrapper";
 import TopFooter from "@/components/top-footer";
 import TopMenu from "@/components/top-menu";
 import "@/globals.css";
+import useChargeAndInternetStore from "@/store/charge-internet";
 import useAuthStore from "@/store/login";
-import {
-  OperatorColors,
-  OperatorType,
-  SimTypes,
-} from "@/utils/enums/charge-internet";
 import {
   OperatorTypeInterface,
   amountBaseOnOperator,
   amounts,
   findOperator,
   operatorType,
-  packages,
-  simTypes,
+  simTypes
 } from "@/utils/heplers/operator-finder";
-import { addCommas } from "@persian-tools/persian-tools";
-import { channel } from "diagnostics_channel";
 import { useEffect, useRef, useState } from "react";
 import { useSearchParam } from "react-use";
-import Skeleton from "@mui/material/Skeleton";
-import DynamicAuthedButton from "@/components/Button/dynamic-auth-button";
-import useChargeAndInternetStore from "@/store/charge-internet";
 export default function Khalafi() {
   const [mobile, setMobile] = useState<string>("");
   const mobileRef = useRef<HTMLInputElement>(null);
@@ -50,6 +40,8 @@ export default function Khalafi() {
   const [packageIndex, setPackageIndex] = useState<number>(0);
   const [productIndex,setProductIndex] = useState<number>(0)
   const [productId,setProductId] = useState<string>("0")
+
+
   const {
     buyCharge,
     buyInternet,
@@ -138,6 +130,10 @@ export default function Khalafi() {
   },[productIndex,internetPackages])
   return (
     <>
+      <NextSeo
+      title="نکست سون، خدمات یکپارچه خودرو، قبض و سیم کارت"
+      description="نکست سون|  خدمات یکپارچه خودرو، استعلام و پرداخت عوارض و بیمه ماشین"
+    />
       {chargeOrInternet && (
         <title>خرید ${chargeOrInternet == "charge" ? "شارژ" : "اینترنت"}</title>
       )}
