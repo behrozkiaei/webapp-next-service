@@ -17,6 +17,7 @@ import { NextSeo } from "next-seo";
 export default function Page() {
   return (
     <>
+
       <title>
         های؛ خدمات یکپارچه خودرو، استعلام و پرداخت عوارض و بیمه ماشین
       </title>
@@ -24,6 +25,7 @@ export default function Page() {
       title="نکست سون، خدمات یکپارچه خودرو، قبض و سیم کارت"
       description="نکست سون|  خدمات یکپارچه خودرو، استعلام و پرداخت عوارض و بیمه ماشین"
     />
+    
       <div>
         <div id="__layout">
           <div className="v-application v-application--is-rtl theme--light">

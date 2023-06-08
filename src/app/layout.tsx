@@ -42,9 +42,12 @@ export default function RootLayout({
   return (
     <html lang="en" dir="rtl">
       <StrictMode>
+
       <ThemeProvider theme={theme}>
         <body>
+
           <>
+          <meta name="google-site-verification" content="dickrgEVPW5-UD9YnRBq0AF2TLFXPMW4IN6Pr5DLgxI" />
             {children}
             <FetchMe />
           </>
