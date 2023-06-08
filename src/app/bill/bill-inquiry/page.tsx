@@ -38,7 +38,7 @@ import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ArrowRight from "@mui/icons-material/ArrowRight";
 import { Icons } from "react-toastify";
-// import { NextSeo } from "next-seo";
+import { NextSeo } from "next-seo";
 
 import DynamicAuthedButton from "@/components/Button/dynamic-auth-button";
 export default function Khalafi() {
@@ -113,10 +113,10 @@ export default function Khalafi() {
   return (
     <>
       <title>استعلام {inquiyMode ? translateKey(inquiyMode) : ""}</title>
-      {/* <NextSeo
+      <NextSeo
       title="نکست سون، خدمات یکپارچه خودرو، قبض و سیم کارت"
       description="نکست سون|  خدمات یکپارچه خودرو، استعلام و پرداخت عوارض و بیمه ماشین"
-    /> */}
+    />
       <div>
         <div className="--is-rtl theme--light">
           <div className="v-application--wrap">
