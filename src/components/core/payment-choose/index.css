@@ -7,8 +7,8 @@
     width: 45%;
   }
   .selected-button{
-    border:unset;
-    background-color:var(--primary) ;
-    color: var(--white) ;
+    border:unset !important;
+    background-color:var(--primary) !important;
+    color: var(--white) !important;
   }
   
