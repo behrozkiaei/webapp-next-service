@@ -14,7 +14,7 @@ const  LoginButton: React.FC  =  () =>{
 
   const [isLoginModalOpen, setLoginModalOpen] = useState<boolean>(false);
   const toggleLoginModal = () => {
-
+    console.log("")
     setLoginModalOpen((prev: boolean) => !prev);
 
     set("isBottomSheetOpen" , isLoginModalOpen)
@@ -23,10 +23,10 @@ const  LoginButton: React.FC  =  () =>{
     set("isBottomSheetOpen" , isLoginModalOpen)
   },[isLoginModalOpen])
   useEffect(()=>{
-    setLoginModalOpen((prev: boolean) => get("isBottomSheetOpen"));
+    // setLoginModalOpen((prev: boolean) => get("isBottomSheetOpen"));
   },[get("isBottomSheetOpen")])
   const closeLoginModal = () => {
-    // chagneState && chagneState(!isLoginModalOpen)
+ 
     setLoginModalOpen((prev: boolean) => false);
   };
   return (

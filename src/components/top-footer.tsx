@@ -27,7 +27,7 @@ function TopFooter() {
               <span>
                 <a href="tel:02168207" dir="ltr" className="tel">
                   {" "}
-                  021-89710001(100-101){" "}
+                  021-89710001(){" "}
                 </a>
               </span>
             </span>
@@ -45,7 +45,7 @@ function TopFooter() {
           <div className="col-lg-2 col-12">
             <div className="float-left">
               <a
-                href="https://www.instagram.com/itoll.ir"
+                href="https://www.instagram.com/"
                 target="_blank"
                 aria-label="instagram"
               >
@@ -63,7 +63,7 @@ function TopFooter() {
                 </svg>
               </a>
               <a
-                href="https://www.linkedin.com/company/itoll"
+                href="https://www.linkedin.com/company/"
                 target="_blank"
                 aria-label="linkedin"
               >
@@ -81,7 +81,7 @@ function TopFooter() {
                 </svg>
               </a>
               <a
-                href="https://twitter.com/itoll_ir"
+                href="https://twitter.com/"
                 target="_blank"
                 aria-label="twitter"
               >

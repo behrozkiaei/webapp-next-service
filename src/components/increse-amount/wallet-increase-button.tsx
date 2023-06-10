@@ -11,18 +11,18 @@ import IncreaseAmount from "./increase-amount";
 
 export default function IncreaseButton() {
   const { isLoading } = useAuthStore();
-  const [openLogin, setLoginModalOpen] = useState<boolean>(false);
+  const [openIncrease, setIncreseModalOpen] = useState<boolean>(false);
   const { set ,get} = useStateStore();
   const toggleLoginModal = () => {
-    setLoginModalOpen((prev: boolean) => !prev);
+    setIncreseModalOpen((prev: boolean) => !prev);
   };
 
   useEffect(()=>{
-    set("isBottomSheetOpen" , openLogin)
-  },[openLogin])
+    set("isBottomSheetOpen" , openIncrease)
+  },[openIncrease])
   const toggleIncreseModal = () => {
     console.log("close")
-    setLoginModalOpen((prev: boolean) => !prev);
+    setIncreseModalOpen((prev: boolean) => !prev);
   };
 
   return (
@@ -50,7 +50,7 @@ export default function IncreaseButton() {
        
       </button>
       <ModalView
-        isOpen={openLogin}
+        isOpen={openIncrease}
         modalStyle={{ width: "600px" }}
         onClose={toggleIncreseModal}
       >
