@@ -10,38 +10,23 @@ export default function ServicesSection() {
           alt="استعلام و پرداخت خلافی خودرو"
           src="./icons/car.svg"
           text="خلافی خودرو"
-          href="/query/khalafi"
+          href="/query/khalafi/detail"
           title="استعلام و پرداخت خلافی خودرو"
         ></ServiceButton>
-        {/* <ServiceButton
-          href="/query/tehran"
-          title="استعلام و پرداخت عوارض آزادراهی آنیرو و تهران شمال"
-          src="./icons/My-Tehran.svg"
-          alt="طرح ترافیک"
-          text="طرح ترافیک"
+        <ServiceButton
+          href="/query/khalafi/aggregate"
+          title="استعلام و پرداخت خلافی تجمیعی بدون احراز هویت"
+          src="./icons/car.svg"
+          alt="خلافی خودرو تجمیعی"
+          text="خلافی خودرو تجمیعی"
         />
         <ServiceButton
-          href="/query/tehran"
-          title="استعلام و پرداخت عوارض آزادراهی آنیرو و تهران شمال"
-          src="./icons/Toll.svg"
-          alt="عوارض آزادراهی"
-          text="عوارض آزادراهی"
+          href="/bill/bill-check"
+          title="پرداخت خلافی با شناسه پرداخت"
+          src="./icons/car.svg"
+          alt="پرداخت قبض خلافی"
+          text="پرداخت قبض خلافی"
         />
-        <ServiceButton
-          href="/query/annual"
-          title="استعلام و پرداخت عوارض سالیانه"
-          src="./icons/Annual-tax.svg"
-          alt="عوارض سالیانه"
-          text="عوارض سالیانه"
-        />
-
-        <ServiceButton
-          href="/query/car-transfer-tax"
-          title="استعلام و پرداخت مالیات نقل و انتقال خودرو"
-          src="./icons/car-transfer-tax.svg"
-          alt="مالیات نقل و انتقال خودرو"
-          text="مالیات نقل و انتقال خودرو"
-        /> */}
       </div>
     </div>
   );
