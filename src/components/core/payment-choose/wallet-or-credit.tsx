@@ -34,7 +34,7 @@ const WalletOrCredit: React.FC<ButtonSelectorInterface> = ({
             marginBottom: "5px",
           }}
           className={`d-flex justify-space-around align-center button-style ${
-            selected === "credit" ? "selected-button" : ""
+            selected === "credit" ? " selected-button" : ""
           }`}
           onClick={() => handleButtonClick("credit")}
         >
@@ -49,7 +49,7 @@ const WalletOrCredit: React.FC<ButtonSelectorInterface> = ({
             marginBottom: "5px",
           }}
           className={`d-flex justify-space-around align-center button-style ${
-            selected === "wallet" ? "selected-button" : ""
+            selected === "wallet" ? " selected-button" : ""
           }`}
           onClick={() => handleButtonClick("wallet")}
         >

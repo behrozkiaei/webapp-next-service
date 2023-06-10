@@ -37,7 +37,7 @@ function TopFooter() {
               </span>
               <span>
                 <a href="mailto:support@itoll.ir">
-                  support@itoll.ir
+                  support@hi-kish.ir
                 </a>
               </span>
             </span>
