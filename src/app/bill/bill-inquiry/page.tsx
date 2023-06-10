@@ -32,13 +32,13 @@ import {
   Period,
 } from "@/utils/interfaces/bill.interface";
 import { useEffect, useState } from "react";
-import { useSearchParam } from "react-use";
 import Divider from "@mui/material/Divider";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ArrowRight from "@mui/icons-material/ArrowRight";
 import { Icons } from "react-toastify";
 //import { NextSeo } from "next-seo";
+import { useRouter } from 'next/router';
 
 import DynamicAuthedButton from "@/components/Button/dynamic-auth-button";
 export default function Khalafi() {
@@ -58,7 +58,7 @@ export default function Khalafi() {
     useBillStore();
   const isMdDown = useIsMdDown();
 
-  const queryModeParam = useSearchParam("query");
+  const [queryModeParam, setQueryModeParam] = useState<string>("");
   const submitForm = async () => {
     if (!isBillType(inquiyMode)) {
       return;
@@ -110,10 +110,15 @@ export default function Khalafi() {
       });
     }
   };
+
+  useEffect(()=>{
+    const urlParams = new URLSearchParams(window.location.search);
+    setQueryModeParam(urlParams.get("query") ?? "")
+  },[])
   return (
     <>
       <title>استعلام {inquiyMode ? translateKey(inquiyMode) : ""}</title>
-          {/* <NextSeo
+      {/* <NextSeo
       title="نکست سون، خدمات یکپارچه خودرو، قبض و سیم کارت"
       description="نکست سون|  خدمات یکپارچه خودرو، استعلام و پرداخت عوارض و بیمه ماشین"
     /> */}

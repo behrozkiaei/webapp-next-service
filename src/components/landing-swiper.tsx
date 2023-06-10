@@ -1,6 +1,7 @@
 import "../globals.css";
 
 export default function LandingSwiper() {
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
   return (
     <div className="swiper-item">
 
@@ -15,7 +16,7 @@ export default function LandingSwiper() {
           className="banner-image desktop"
           style={{
             backgroundImage:
-              "url(http://localhost:3000/public/assets/images/banner.png)",
+              `url(${apiUrl}/public/assets/images/banner.png)`,
           }}
         />
    

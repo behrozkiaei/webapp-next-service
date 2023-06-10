@@ -1,7 +1,6 @@
 "use client"; // this is a client component 👈🏽
 import DynamicAuthedButton from "@/components/Button/dynamic-auth-button";
 import Aside from "@/components/aside";
-import MyButton from "@/components/core/button";
 import ModalView from "@/components/core/modal";
 import MyInput from "@/components/core/my-input";
 import WalletOrCredit from "@/components/core/payment-choose/wallet-or-credit";
@@ -21,7 +20,6 @@ import {
   verifyIranianNationalId,
 } from "@persian-tools/persian-tools";
 import { useEffect, useState } from "react";
-import { useSearchParam } from "react-use";
 
 export default function NegetivePoint() {
   const [nationalCode, setNationalCode] = useState<string>("");
@@ -36,6 +34,7 @@ export default function NegetivePoint() {
   const [modeFa, setModeFa] = useState<string>("");
   const { set } = useInquiryStore();
   const { isLoggedIn } = useAuthStore();
+  const [queryModeParam, setQueryModeParam] = useState<string>("");
   const {
     checkMobileAndNationalCodeExist,
     selectedNajiUser,
@@ -57,7 +56,10 @@ export default function NegetivePoint() {
     uiState: state.uiState,
     isLoading: state.isLoading,
   }));
-  const queryModeParam = useSearchParam("query");
+  useEffect(()=>{
+    const urlParams = new URLSearchParams(window.location.search);
+    setQueryModeParam(urlParams.get("query") ?? "")
+  },[])
   useEffect(() => {
     if (queryModeParam == "active-plates") {
       setQueryMode("active-plates");

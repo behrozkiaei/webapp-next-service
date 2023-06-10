@@ -2,13 +2,14 @@
 // import ReceiptDetails from "@/components/receipt/receipt-component";
 import ReceiptSkeleton from "@/components/receipt/receipt-skeleton";
 import { OrderInterface, OrderType } from "@/utils/interfaces/order.interface";
-import { useEffect, useState } from "react";
+
 import "@/globals.css";
 import ReceiptDetails from "@/components/receipt/receipt-component";
-import { useRouter } from "next/router";
+
+import { useEffect, useState } from "react";
 import useOrderStore from "@/store/order.store";
-import { useSearchParam } from "react-use";
 const receiptC: OrderInterface = {
+
   type: OrderType.ACTIVE_PLATES_BY_CREDIT,
   amount: 100.0,
   desc: [
@@ -47,14 +48,22 @@ const receiptC: OrderInterface = {
 };
 const Recipt = () => {
   const [receipt, setReceipt] = useState<OrderInterface>();
-
+  const [id, setId] = useState<string>("");
+  const [token, setToken] = useState<string>("");
   useEffect(() => {
     setTimeout(() => {
       setReceipt(receiptC);
     }, 100);
   }, []);
-  const id = useSearchParam("id");
-  var token = useSearchParam("token");
+  // const id = useSearchParam("id");
+  // var token = useSearchParam("token");
+
+  useEffect(()=>{
+    const urlParams = new URLSearchParams(window.location.search);
+    setId(urlParams.get("id") ?? "")
+    setToken(urlParams.get("token") ?? "")
+
+  },[])
   // const { id } = router?.query;
   const { fetchData, isLoading, data } = useOrderStore((state) => ({
     fetchData: state.fetchData,

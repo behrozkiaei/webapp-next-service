@@ -24,7 +24,7 @@ import {
   simTypes
 } from "@/utils/heplers/operator-finder";
 import { useEffect, useRef, useState } from "react";
-import { useSearchParam } from "react-use";
+// import { useSearchParam } from "react-use";
 //import { NextSeo } from "next-seo";
 export default function Khalafi() {
   const [mobile, setMobile] = useState<string>("");
@@ -55,7 +55,7 @@ export default function Khalafi() {
     internetPackages
   } = useChargeAndInternetStore();
   const isMdDown = useIsMdDown();
-  const chargeOrInternet = useSearchParam("query");
+  const [chargeOrInternet, setChargeOrInternet] = useState<string>("");
   const submitForm = async () => {
     console.log("submitForm");
     const cahrge = chargeOrInternet == "charge";
@@ -78,7 +78,10 @@ export default function Khalafi() {
         sim_type: selectedSimTypes,
       }));
   };
-
+  useEffect(()=>{
+    const urlParams = new URLSearchParams(window.location.search);
+    setChargeOrInternet(urlParams.get("query") ?? "")
+  },[])
   useEffect(() => {
     set("redirectUrl", null);
     set("orderId", null);
