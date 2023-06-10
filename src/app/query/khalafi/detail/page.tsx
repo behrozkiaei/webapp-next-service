@@ -237,7 +237,7 @@ export default function Khalafi() {
                     />
                   </div>
                   <div className="devider mt-8"></div>
-                  <div className="d-flex justify-start align-center mt-4 ">
+                  {/* <div className="d-flex justify-start align-center mt-4 ">
                     <CheckboxWithLabel
                       // label="hj"
                       onCheckboxChange={(checked) => {
@@ -256,7 +256,7 @@ export default function Khalafi() {
                         </li>
                       </ul>
                     </div>
-                  </div>
+                  </div> */}
 
                   <div
                     className={`d-flex flex-column justify-start align-center mt-4 ${

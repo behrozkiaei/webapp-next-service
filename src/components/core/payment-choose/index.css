@@ -2,9 +2,9 @@
     padding: 8px 16px;
     border-radius: 9px;
     cursor: pointer;
-    font-size: 12px;
+    font-size: 12px !important;
     border: 1px solid var(--main_gray);
-    width: 45%;
+    width: 45% !important;
   }
   .selected-button{
     border:unset !important;
