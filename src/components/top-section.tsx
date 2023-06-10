@@ -53,7 +53,7 @@ export default function TopMenu() {
             <div className="support d-flex align-center">
               <span>پشتیبانی های</span>
               <span className="splitter mx-4" />
-              <a href="tel:02168207" className="tel">
+              <a href="tel:02189710001" className="tel">
                 <Image
                   src="/icons/Call.svg"
                   alt="تماس"
