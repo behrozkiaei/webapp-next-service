@@ -81,7 +81,7 @@ const PlateBox: React.FC<PlateWrapperInterface> = ({
         id : id ?? "",
         complete : isValid,
       })
-      if(firstPart.length == 2 && !disabled && countrydPart=="")
+      if(firstPart.length == 2 && !disabled && charChoosed.length>0 && countrydPart=="")
       secondInputRef.current?.focus();
       
       if(firstPart.length == 2 && !disabled && secondPart.length==3 )
