@@ -341,7 +341,18 @@ export const getPlateByPlateInfo = async (
   data: Plate
 ): Promise<AxiosDataResponse<Plate>> => {
   try {
-    const response = await axiosInstance().post(`/naji/plate-by-info`, data);
+  const {
+    firstPart ,secondPart,charPart,countryPart 
+  } = data
+    const response = await axiosInstance().post(`/naji/plate-by-info`, {
+        firstPart:firstPart ,
+        secondPart: secondPart,
+        countryPart: countryPart,
+        charPart: charPart,
+        najiId: "",
+        type: ""
+    });
+    console.log("response",response.data)
     return {
       status: response.data.status,
       result: response.data.result,

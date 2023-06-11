@@ -73,7 +73,7 @@ const PlateBox: React.FC<PlateWrapperInterface> = ({
       const isValid = firstPart?.length == 2 && secondPart?.length == 3 && char?.length > 0 && countrydPart?.length==2 
       console.log("plate Is Valid", isValid)
       isValid && onChange && onChange({
-        plateType: PlateType.CAR,
+        type: PlateType.CAR,
         firstPart: firstPart ?? "" ,
         secondPart: secondPart ?? "" ,
         countryPart: countrydPart ?? "",
@@ -113,7 +113,7 @@ const PlateBox: React.FC<PlateWrapperInterface> = ({
       disabled={(disabled || plateData)? true : false}
       className="first-part"
     />
-    <div aria-hidden="true" className="char-part pb-1">
+    <div aria-hidden="true" className="char-part pb-1" onClick={handleOpen}>
       <span className={char ? "" : "empty"}>{char ? char : "--"}</span>
     </div>
     <input

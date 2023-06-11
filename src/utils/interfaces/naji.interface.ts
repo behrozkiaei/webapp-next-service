@@ -26,7 +26,6 @@ export interface plateData{
 export interface Plate {
   id?: string;
   najiId?: string;
-
   plateType?: PlateType;
   firstPart: string;
   secondPart: string;

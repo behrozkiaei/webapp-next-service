@@ -131,7 +131,7 @@ const useInquiryStore = create<InquiryStoreState>((set, get) => ({
               : undefined,
         }));
 
-        console.log(get());
+        //console.log(get());
       } catch (e) {
         console.log(e);
       } finally {
@@ -150,17 +150,19 @@ const useInquiryStore = create<InquiryStoreState>((set, get) => ({
       try {
         set((state) => ({ ...state, isLoading: true }));
         const res = await getPlateByPlateInfo(plate);
+        console.log("sdfksjfjsdfljslfjskdljfksdjfj",res)
         if (res.status && res.result) {
+          console.log(res.result)
           set((state) => ({ ...state, selectedPlate: res.result }));
           if (res.result.naji) {
             set((state) => ({ ...state, selectedNajiUser: res.result?.naji }));
           }
         }
-        console.log(get());
+        console.log("after add",get());
       } catch {
       } finally {
         set((state) => ({ ...state, isLoading: false }));
-        console.log(get());
+        console.log("after add catch",get());
       }
     }
   },
@@ -191,12 +193,12 @@ const useInquiryStore = create<InquiryStoreState>((set, get) => ({
         set((state) => ({ ...state, isLoading: false }));
       }
       console.log(res);
-      console.log(get());
+      //console.log(get());
       return;
     } catch (e) {
       console.log(e);
     } finally {
-      console.log(get());
+      //console.log(get());
     }
   },
   inquiryForviolationAggregateReport: async (plateId, fromWallet) => {
@@ -224,12 +226,12 @@ const useInquiryStore = create<InquiryStoreState>((set, get) => ({
         set((state) => ({ ...state, error: res.message }));
       }
       console.log(res);
-      console.log(get());
+      //console.log(get());
       return;
     } catch (e) {
       console.log(e);
     } finally {
-      console.log(get());
+      //console.log(get());
       set((state) => ({ ...state, isLoading: false }));
     }
   },
@@ -262,12 +264,12 @@ const useInquiryStore = create<InquiryStoreState>((set, get) => ({
         set((state) => ({ ...state, error: res.message }));
       }
       console.log(res);
-      console.log(get());
+      //console.log(get());
       return;
     } catch (e) {
       console.log(e);
     } finally {
-      console.log(get());
+      //console.log(get());
       set((state) => ({ ...state, isLoading: false }));
     }
   },
@@ -281,7 +283,7 @@ const useInquiryStore = create<InquiryStoreState>((set, get) => ({
     } catch (e) {
       console.log(e);
     } finally {
-      console.log(get());
+      //console.log(get());
       set((state) => ({ ...state, isLoading: false }));
     }
   },
@@ -306,7 +308,7 @@ const useInquiryStore = create<InquiryStoreState>((set, get) => ({
         };
         set((state) => ({ ...state, isLoading: true }));
         const res = await getPlateByPlateInfo(plate);
-        console.log(res);
+        // console.log(res);
         if (!res.status) {
           const plateRes = await AddPlateRepo(plate);
           if (plateRes.status) {
@@ -321,7 +323,7 @@ const useInquiryStore = create<InquiryStoreState>((set, get) => ({
         }));
       } finally {
         set((state) => ({ ...state, isLoading: false }));
-        console.log(get());
+        // //console.log(get());
       }
     }
   },
@@ -333,7 +335,7 @@ const useInquiryStore = create<InquiryStoreState>((set, get) => ({
       }
     } catch (error) {
     } finally {
-      console.log(get());
+      //console.log(get());
     }
   },
   driverLicenseInquiry: async (data) => {
@@ -363,7 +365,7 @@ const useInquiryStore = create<InquiryStoreState>((set, get) => ({
       return;
     } catch (error) {
     } finally {
-      console.log(get());
+      //console.log(get());
     }
   },
   negetivePointInquiry: async (data) => {
@@ -393,7 +395,7 @@ const useInquiryStore = create<InquiryStoreState>((set, get) => ({
       return;
     } catch (error) {
     } finally {
-      console.log(get());
+      //console.log(get());
     }
   },
   activePlteInquiry: async (data: QueryWithNajiId) => {
@@ -423,7 +425,7 @@ const useInquiryStore = create<InquiryStoreState>((set, get) => ({
       return;
     } catch (error) {
     } finally {
-      console.log(get());
+      //console.log(get());
     }
   },
   passportStatusInquiry: async (data: QueryWithNajiId) => {
@@ -453,7 +455,7 @@ const useInquiryStore = create<InquiryStoreState>((set, get) => ({
       return;
     } catch (error) {
     } finally {
-      console.log(get());
+      //console.log(get());
     }
   },
   ountryLeavingStatusInquiry: async (data: QueryWithNajiId) => {
@@ -483,7 +485,7 @@ const useInquiryStore = create<InquiryStoreState>((set, get) => ({
       return;
     } catch (error) {
     } finally {
-      console.log(get());
+      //console.log(get());
     }
   },
   DocumentStatusInquiry: async (data: QueryWithPlateId) => {
@@ -507,7 +509,7 @@ const useInquiryStore = create<InquiryStoreState>((set, get) => ({
       return;
     } catch (error) {
     } finally {
-      console.log(get());
+      //console.log(get());
     }
   },
 }));

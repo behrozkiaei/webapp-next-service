@@ -44,20 +44,14 @@ export default function Khalafi() {
   const [fromWallet, setPayment] = useState<boolean>(false);
   const [mobileHasError, setMobileError] = useState<boolean>(true);
   const [nationalHasError, setNationalError] = useState<boolean>(false);
-  const { set, isLoading } = useInquiryStore();
+  const { set, isLoading  ,get} = useInquiryStore();
   const [queryMode, setQueryMode] = useState<QueryModeType>("khalafi");
   const [modeFa, setModeFa] = useState<string>("استعلام خلافی خودرو");
-  const queryModeParam = useSearchParam("query");
   const { isLoggedIn } = useAuthStore((state) => ({
     isLoggedIn: state.isLoggedIn,
   }));
 
-  useEffect(() => {
-    if (queryModeParam == "document") {
-      setQueryMode("document");
-      setModeFa("استعلام پلاک های فعال");
-    }
-  }, [queryModeParam]);
+
   const {
     checkMobileAndNationalCodeExist,
     selectedNajiUser,
@@ -69,6 +63,7 @@ export default function Khalafi() {
     redirectLink,
     orderId,
     uiState,
+    
   } = useInquiryStore((state) => ({
     checkMobileAndNationalCodeExist: state.checkMobileAndNationalCodeExist,
     selectedNajiUser: state.selectedNajiUser,
@@ -81,11 +76,14 @@ export default function Khalafi() {
     orderId: state.orderId,
     uiState: state.uiState,
   }));
+
   const changeFocuse = () => {
     nationalRef.current?.focus();
-  };
+  }; 
   useEffect(() => {
-    if (plate && selectedNajiUser) checkPlateIfExist(plate);
+    // if (plate && selectedNajiUser){
+    //   await checkPlateIfExist(plate);
+    // } 
     if (selectedNajiUser) {
       setMobile(selectedNajiUser.mobile ?? "");
       setNationalCode(selectedNajiUser.nationalCode ?? "");
@@ -93,6 +91,8 @@ export default function Khalafi() {
     if (selectedPlate) {
       setPlate(selectedPlate);
     }
+    console.log(selectedPlate)
+    console.log(selectedNajiUser )
   }, [plate, selectedNajiUser, selectedPlate, checkPlateIfExist]);
 
   useEffect(() => {
@@ -114,29 +114,38 @@ export default function Khalafi() {
       phoneNumberValidator(mobile) && verifyIranianNationalId(nationalCode);
     verified && checkMobileAndNationalCodeExist(mobile, nationalCode, true);
   }, [mobile, nationalCode, checkMobileAndNationalCodeExist]);
-
+  useEffect(()=>{
+    const urlParams = new URLSearchParams(window.location.search);
+    setQueryMode(urlParams.get("query") == "document" ?"document" : "khalafi")
+  },[])
   const submitForm = async () => {
-    if (selectedPlate && selectedNajiUser) {
-      if (selectedPlate.id && queryMode == "khalafi") {
-        await inquiryForviolationReport(selectedPlate.id, fromWallet);
+    if (get("selectedPlate") && get("selectedNajiUser")) {
+      if (get("selectedNajiUser").id && queryMode == "khalafi") {
+        await inquiryForviolationReport(get("selectedPlate").id, fromWallet);
         return;
       }
-      if (selectedPlate.id && selectedNajiUser && queryMode == "document") {
+      if (get("selectedPlate").id && get("selectedNajiUser") && queryMode == "document") {
         await DocumentStatusInquiry({
-          plateId: selectedPlate.id,
+          plateId: get("selectedPlate").id,
           fromWallet: isLoggedIn ? fromWallet : false,
         });
         return;
       }
     }
-    if (plate && selectedNajiUser) {
+    if(!get("selectedPlate") && plate){
+      await checkPlateIfExist(plate)
+    }
+    if (plate && get("selectedNajiUser") && !get("selectedPlate")) {
       await addPlate({
         ...plate,
-        najiId: selectedNajiUser.id,
+        najiId: get("selectedNajiUser").id,
       });
-      submitForm();
-      // await inquiryForviolationReport(selectedPlate?.id!, false);
     }
+    if(get("selectedPlate") && plate){
+      await checkPlateIfExist(plate)
+      submitForm()
+    }
+   return;
   };
 
   useEffect(() => {
