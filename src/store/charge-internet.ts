@@ -99,7 +99,7 @@ const useChargeAndInternetStore = create<ChargeAndInternetStoreInterface>(
           } else {
             res = await buyInternetNoAuth(payload);
           }
-          if (res?.result.redirectUrl) {
+          if (res?.result.RedirectURL) {
             set((state) => ({
               ...state,
               redirectUrl: res.result?.RedirectURL,

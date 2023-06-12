@@ -1,6 +1,6 @@
 export enum SimTypes{
-    ETEBARI = "ETEBARI",
-    DAEMI ="DAEMI"
+    ETEBARI = "credit",
+    DAEMI ="permanent"
 }
 export enum OperatorType{
     Irancel = "Irancel",
