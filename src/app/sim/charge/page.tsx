@@ -21,7 +21,7 @@ import {
   amounts,
   findOperator,
   operatorType,
-  simTypes
+  simTypes,
 } from "@/utils/heplers/operator-finder";
 import { useEffect, useRef, useState } from "react";
 // import { useSearchParam } from "react-use";
@@ -39,9 +39,8 @@ export default function Khalafi() {
   const [simTypeDefault, setSymTypeDefault] = useState<number>(0);
   const [simTypeColor, setSimTypeColor] = useState<string>("lightblue");
   const [packageIndex, setPackageIndex] = useState<number>(0);
-  const [productIndex,setProductIndex] = useState<number>(0)
-  const [productId,setProductId] = useState<string>("0")
-
+  const [productIndex, setProductIndex] = useState<number>(0);
+  const [productId, setProductId] = useState<string>("0");
 
   const {
     buyCharge,
@@ -52,7 +51,7 @@ export default function Khalafi() {
     redirectUrl,
     orderId,
     getInternetPackages,
-    internetPackages
+    internetPackages,
   } = useChargeAndInternetStore();
   const isMdDown = useIsMdDown();
   const [chargeOrInternet, setChargeOrInternet] = useState<string>("");
@@ -78,10 +77,10 @@ export default function Khalafi() {
         sim_type: selectedSimTypes,
       }));
   };
-  useEffect(()=>{
+  useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
-    setChargeOrInternet(urlParams.get("query") ?? "")
-  },[])
+    setChargeOrInternet(urlParams.get("query") ?? "");
+  }, []);
   useEffect(() => {
     set("redirectUrl", null);
     set("orderId", null);
@@ -108,15 +107,14 @@ export default function Khalafi() {
       await getInternetPackages();
     };
   }, [chargeOrInternet]);
-  useEffect(()=>{
-    if(internetPackages){
-    
-      const keys = internetPackages.map(data=>{
-        return data.key
-      })
-      console.log(keys)
+  useEffect(() => {
+    if (internetPackages) {
+      const keys = internetPackages.map((data) => {
+        return data.key;
+      });
+      console.log(keys);
     }
-  },[internetPackages])
+  }, [internetPackages]);
   useEffect(() => {
     if (mobile.length == 4) {
       let mobileBlueprint = mobile + "1111111";
@@ -127,14 +125,16 @@ export default function Khalafi() {
       if (operatorData) setSimTypeColor(operatorData?.color!);
     }
   }, [mobile]);
-  useEffect(()=>{
-    if(productIndex >=0 && internetPackages){
-      setProductId(internetPackages[packageIndex].value[productIndex].product_id)
+  useEffect(() => {
+    if (productIndex >= 0 && internetPackages) {
+      setProductId(
+        internetPackages[packageIndex].value[productIndex].product_id
+      );
     }
-  },[productIndex,internetPackages])
+  }, [productIndex, internetPackages]);
   return (
     <>
-          {/* <NextSeo
+      {/* <NextSeo
       title="نکست سون، خدمات یکپارچه خودرو، قبض و سیم کارت"
       description="نکست سون|  خدمات یکپارچه خودرو، استعلام و پرداخت عوارض و بیمه ماشین"
     /> */}
@@ -242,31 +242,34 @@ export default function Khalafi() {
                   {!mobileHasError && chargeOrInternet == "internet" && (
                     <div className="d-flex justify-start align-center mt-4 px-1 full-width">
                       <ScrollableButtonList
-                        buttons={internetPackages?.map(data=>{
-                          return data.key
-                        }) ?? []}
+                        buttons={
+                          internetPackages?.map((data) => {
+                            return data.key;
+                          }) ?? []
+                        }
                         buttonWidth={100}
                         buttonMaxWidth={150}
-                        onClick={(index)=>{
-                          setPackageIndex(index)
+                        onClick={(index) => {
+                          setPackageIndex(index);
                         }}
                       />
                     </div>
                   )}
-                  {!mobileHasError && chargeOrInternet == "internet" && internetPackages && (
-                    <div className="d-flex justify-start align-center my-1 px-2 full-width">
-                      <ScrollableButtonListVertical
-                        buttons={internetPackages[packageIndex].value ?? [] }
-                        height={200}
-                        onClick={(index)=>{
+                  {!mobileHasError &&
+                    chargeOrInternet == "internet" &&
+                    internetPackages && (
+                      <div className="d-flex justify-start align-center my-1 px-2 full-width">
+                        <ScrollableButtonListVertical
+                          buttons={internetPackages[packageIndex].value ?? []}
+                          height={200}
+                          onClick={(index) => {
+                            console.log(index);
 
-                          console.log(index)
-                      
-                          setProductIndex(index)
-                        }}
-                      />
-                    </div>
-                  )}
+                            setProductIndex(index);
+                          }}
+                        />
+                      </div>
+                    )}
                   {isLoggedIn && !mobileHasError && (
                     <div className="d-flex justify-start align-center mt-4 full-width">
                       <WalletOrCredit

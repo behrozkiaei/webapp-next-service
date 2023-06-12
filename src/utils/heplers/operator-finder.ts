@@ -126,41 +126,36 @@ export const amountBaseOnOperator = (operator :string)=>{
 }
 export const amounts = [
   {
-    content: addCommas(2000),
+    content: addCommas(50000),
     color: "lightBlue",
-    value: "2000",
+    value: "50000",
   },
   {
-    content: addCommas(5000),
+    content: addCommas(100000),
     color: "lightBlue",
-    value: "5000",
+    value: "100000",
   },
   {
-    content: addCommas(10000),
+    content: addCommas(200000),
     color: "lightBlue",
-    value: "10000",
-  },
-  {
-    content: addCommas(20000),
-    color: "lightBlue",
-    value: "20000",
+    value: "200000",
   },
 ];
 export const amountsIranncel = [
   {
-    content: addCommas(1000),
+    content: addCommas(100000),
     color: OperatorColors.Irancel,
-    value: "1000",
+    value: "100000",
   },
   {
-    content: addCommas(2000),
+    content: addCommas(200000),
     color: OperatorColors.Irancel,
-    value: "2000",
+    value: "200000",
   },
   {
-    content: addCommas(5000),
+    content: addCommas(50000),
     color: OperatorColors.Irancel,
-    value: "5000",
+    value: "50000",
   },
   {
     content: addCommas(10000),
@@ -175,42 +170,37 @@ export const amountsIranncel = [
 ];
 export const amountsHamrah = [
   {
-    content: addCommas(5000),
+    content: addCommas(50000),
     color: OperatorColors.Hamrah,
-    value: "5000",
+    value: "50000",
   },
   {
-    content: addCommas(10000),
+    content: addCommas(100000),
     color: OperatorColors.Hamrah,
-    value: "10000",
+    value: "100000",
   },
   {
-    content: addCommas(20000),
+    content: addCommas(200000),
     color: OperatorColors.Hamrah,
-    value: "20000",
+    value: "200000",
   },
 ];
 export const amountsRightel = [
   {
-    content: addCommas(2000),
+    content: addCommas(50000),
     color: OperatorColors.Rightel,
-    value: "2000",
+    value: "50000",
   },
   {
-    content: addCommas(5000),
+    content: addCommas(100000),
     color: OperatorColors.Rightel,
-    value: "5000",
+    value: "100000",
   },
   {
-    content: addCommas(10000),
+    content: addCommas(200000),
     color: OperatorColors.Rightel,
-    value: "10000",
-  },
-  {
-    content: addCommas(20000),
-    color: OperatorColors.Hamrah,
-    value: "20000",
-  },
+    value: "200000",
+  }
 ];
 export const packages = [
   {
