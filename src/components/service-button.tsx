@@ -34,7 +34,7 @@ export const ServiceButton: React.FC<ServiceButtonInterface> = ({
           filter: `invert(30%) sepia(100%) saturate(3000%) hue-rotate(210deg) brightness(90%) contrast(95%)`,
         }}
       />
-      <p style={{ marginTop: "unset" }}>{text}</p>
+      <p style={{ marginTop: "unset"  , fontSize:"1em"}}>{text}</p>
       {spanText && <span className="new">{spanText}</span>}
     </Link>
   );

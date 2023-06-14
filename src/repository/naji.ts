@@ -374,7 +374,7 @@ export const getOrderById = async (
        
       });
       const response = await axiosInstanceWithToken.get(
-        `/transactions/order-by-id/${id}`
+        `/transactions/order-by-id/?id=${id}`
       );
       return {
         status: response.data.status,

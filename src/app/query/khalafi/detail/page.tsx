@@ -30,6 +30,7 @@ import useAuthStore from "@/store/login";
 import Header from "@/components/header";
 import PageWrapper from "@/components/page-wrapper";
 import DynamicAuthedButton from "@/components/Button/dynamic-auth-button";
+import { violationAggregateRepo } from "@/repository/naji";
 
 export default function Khalafi() {
   const [hideInput, setHideInput] = useState(true);
@@ -50,7 +51,7 @@ export default function Khalafi() {
   const { isLoggedIn } = useAuthStore((state) => ({
     isLoggedIn: state.isLoggedIn,
   }));
-
+  const [isAggregate , setAggregate] = useState<boolean>(false)
 
   const {
     checkMobileAndNationalCodeExist,
@@ -63,7 +64,7 @@ export default function Khalafi() {
     redirectLink,
     orderId,
     uiState,
-    
+    inquiryForviolationAggregateReport
   } = useInquiryStore((state) => ({
     checkMobileAndNationalCodeExist: state.checkMobileAndNationalCodeExist,
     selectedNajiUser: state.selectedNajiUser,
@@ -71,6 +72,7 @@ export default function Khalafi() {
     checkPlateIfExist: state.checkPlateIfExist,
     inquiryForviolationReport: state.inquiryForviolationReport,
     DocumentStatusInquiry: state.DocumentStatusInquiry,
+    inquiryForviolationAggregateReport: state.inquiryForviolationAggregateReport,
     addPlate: state.addPlate,
     redirectLink: state.redirectLink,
     orderId: state.orderId,
@@ -116,15 +118,31 @@ export default function Khalafi() {
   }, [mobile, nationalCode, checkMobileAndNationalCodeExist]);
   useEffect(()=>{
     const urlParams = new URLSearchParams(window.location.search);
-    setQueryMode(urlParams.get("query") == "document" ?"document" : "khalafi")
+    setQueryMode(urlParams.get("queryMode") == "document" ?"document" : "khalafi")
+    setAggregate(urlParams.get("aggregate") ? true : false);
   },[])
+  useEffect(()=>{
+  isAggregate && setModeFa("استعلام خلافی تجمیعی")
+  },[isAggregate])
+
+
+  useEffect(()=>{
+    
+    queryMode == "document" && setModeFa("استعلام سند خودرو")
+    },[queryMode])
   const submitForm = async () => {
+    // console.log(queryMode)
+    // return
     if (get("selectedPlate") && get("selectedNajiUser")) {
       if (get("selectedNajiUser").id && queryMode == "khalafi") {
+        if(!isAggregate)
         await inquiryForviolationReport(get("selectedPlate").id, fromWallet);
+        if(isAggregate)
+        await inquiryForviolationAggregateReport(get("selectedPlate").id, fromWallet);
         return;
       }
       if (get("selectedPlate").id && get("selectedNajiUser") && queryMode == "document") {
+        console.log("document")
         await DocumentStatusInquiry({
           plateId: get("selectedPlate").id,
           fromWallet: isLoggedIn ? fromWallet : false,
@@ -159,8 +177,6 @@ export default function Khalafi() {
 
   const onCloseModal = () => {
     checkMobileAndNationalCodeExist(mobile, nationalCode);
-    // toggleModal()
-
     toggleModal(false);
   };
   return (
@@ -246,27 +262,6 @@ export default function Khalafi() {
                     />
                   </div>
                   <div className="devider mt-8"></div>
-                  {/* <div className="d-flex justify-start align-center mt-4 ">
-                    <CheckboxWithLabel
-                      // label="hj"
-                      onCheckboxChange={(checked) => {
-                        console.log(checked);
-                        setHideInput(!checked);
-                      }}
-                    />
-                    <div className="d-flex flex-column justify-start align-center">
-                      <ul className="checkbox-box mr-4">
-                        <li>استعلام نمره منفی گواینامه</li>
-                        <li>
-                          هزینه استعلام
-                          <strong style={{ color: "var(--primary)" }}>
-                            5,200 تومان
-                          </strong>
-                        </li>
-                      </ul>
-                    </div>
-                  </div> */}
-
                   <div
                     className={`d-flex flex-column justify-start align-center mt-4 ${
                       hideInput ? "hide-input" : ""
@@ -299,7 +294,7 @@ export default function Khalafi() {
                     className="full-width d-flex justify-center"
                   >
                     <DynamicAuthedButton
-                      text="استعلام خلافی   تومان 5,000"
+                      text={queryMode == "document" ? "استعلام 5,000 تومان" : isAggregate ? "استعلام 2,000 تومان" : "استعلام 5,000 تومان"}
                       width="100%"
                       height="40px"
                       fromWallet={isLoggedIn ? false : fromWallet ?? false}

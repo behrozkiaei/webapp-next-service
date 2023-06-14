@@ -11,6 +11,7 @@ const theme = createTheme({
   palette: {
     primary: {
       main: "#00bc3b",
+      contrastText: "#fffff" //button text white instead of black
     },
     secondary: {
       main: "#01286d",
@@ -19,6 +20,7 @@ const theme = createTheme({
       main: "#ff5252",
     },
   },
+  
   direction: "rtl",
   components: {
     MuiInputLabel: {

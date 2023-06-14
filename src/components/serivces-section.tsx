@@ -14,7 +14,7 @@ export default function ServicesSection() {
           title="استعلام و پرداخت خلافی خودرو"
         ></ServiceButton>
         <ServiceButton
-          href="/query/khalafi/aggregate"
+          href="/query/khalafi/detail?aggregate=true"
           title="استعلام و پرداخت خلافی تجمیعی بدون احراز هویت"
           src="./icons/car.svg"
           alt="خلافی خودرو تجمیعی"

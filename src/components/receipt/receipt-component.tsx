@@ -1,4 +1,5 @@
-import * as React from "react";
+"use client";
+import React, { useEffect, useState } from "react";
 import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
 import List from "@mui/material/List";
@@ -11,6 +12,9 @@ import { OrderInterface } from "@/utils/interfaces/order.interface";
 import IconButton from "@mui/material/IconButton";
 import Button from "@mui/material/Button";
 import ShareIcon from "@mui/icons-material/Share";
+import { useEffectOnce, useStateList } from "react-use";
+import { ReceiptTitleHeaderBox } from "./top-receipt-title-desc";
+import { addCommas } from "@persian-tools/persian-tools";
 const dotStyle = {
   position: "absolute",
   bottom: 19,
@@ -31,38 +35,20 @@ const handlePrint = () => {
 };
 
 const ReceiptDetails: React.FC<ReceiptDatailPropInterface> = ({ receipt }) => {
+  const [seperateReceipt, setReceipt] = useState<Array<any>>();
   return (
     <Paper elevation={3} sx={{ p: 2, maxWidth: 800, width: 800, margin: 5 }}>
-      <Box
-        sx={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          flexDirection: "column",
-          width: "100%",
-        }}
-      >
-        {receipt.isPaid ? (
-          // <></>
-          <CheckCircleIcon
-            color="success"
-            sx={{ mb: 2 }}
-            width={80}
-            height={80}
-            style={{fontSize:80}}
-          />
-        ) : (
-          // <></>
-          <CancelIcon color="error" sx={{ mb: 2 }} width={80} height={80} style={{fontSize:80}} />
-        )}
-        <Typography variant="h5" sx={{ mt: 2 }} >
-          {receipt.title}
-        </Typography>
-      </Box>
+      <ReceiptTitleHeaderBox
+        status={receipt.isPaid ?? false}
+        title={receipt.title ?? ""}
+        desc={`مبلغ پرداختی: ${addCommas(receipt?.amount ?? 0)} ریال `}
+      />
       <List sx={{ maxHeight: 700, overflow: "auto" }}>
         {receipt &&
-          receipt.desc?.map((item) =>
-            item.key === "devider" ? null : (
+          receipt.desc?.map((item, index) =>
+            item.key === "separator" ? (
+              <> </>
+            ) : (
               <ListItem
                 key={item.id}
                 sx={{
