@@ -19,6 +19,7 @@ interface HeadInterface {
 }
 
 const  Head :React.FC<HeadInterface> = ({ title, keywords="", description, url }) => {
+  console.log("description",description)
   return (
     <NextHead>
       <title>{title || _default.title}</title>

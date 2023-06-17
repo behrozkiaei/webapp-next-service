@@ -24,7 +24,7 @@ export default function DocumentSection() {
       />
 
       <ServiceButton
-        href="/query/khalafi/detail?queryMode=document"
+        href="/query/khalafi/detail?query=document"
         title="استعلام کارت و سند خوردو"
         src="./icons/car.svg"
         alt="استعلام وضعیت کارت و سند خودرو"
@@ -40,14 +40,14 @@ export default function DocumentSection() {
       /> */}
 
       <ServiceButton
-        href="police-inquiry/naji-document?queryMode=active-plates"
+        href="police-inquiry/naji-document?query=active-plates"
         title="استعلام پلاک با کد ملی"
         src="./icons/Car-plate-inquery.svg"
         alt="استعلام پلاک‌های فعال"
         text="استعلام پلاک‌های فعال"
       />
       <ServiceButton
-        href="police-inquiry/naji-document?queryMode=country-leaving-status"
+        href="police-inquiry/naji-document?query=country-leaving-status"
         title="استعلام وضعیت خروج از کشور"
         src="./icons/Car-plate-inquery.svg"
         alt="استعلام وضعیت خروج از کشور"

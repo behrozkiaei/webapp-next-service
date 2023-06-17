@@ -12,7 +12,7 @@ import TopMenu from "@/components/top-menu";
 import Image from "next/image";
 import SimServices from "@/components/sim-services";
 import BillServices from "@/components/bill-services";
-import { NextSeo } from "next-seo";
+// import { NextSeo } from "next-seo";
 import Head from "@/components/meta-head";
 
 export default function Page() {

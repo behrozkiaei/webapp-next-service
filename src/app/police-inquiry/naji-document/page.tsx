@@ -92,7 +92,7 @@ export default function NegetivePoint() {
       queryModeParam == "active-plates" &&
         (await activePlteInquiry({
           fromWallet: fromWallet,
-          najiId: selectedNajiUser.id,
+          najiId: selectedNajiUser.najiId ?? "",
         }));
       queryModeParam == "passport-status" &&
         (await passportStatusInquiry({
@@ -173,7 +173,7 @@ export default function NegetivePoint() {
                           mode="mobile"
                           title="شماره موبایل"
                           error={""}
-                          placeholder="*********09"
+                          placeholder="09*********"
                           maxLength={11}
                           minLength={11}
                           disabled={

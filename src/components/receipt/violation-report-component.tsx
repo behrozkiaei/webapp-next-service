@@ -45,20 +45,28 @@ const ViolationReceiptDetails: React.FC<ReceiptDatailPropInterface> = ({
   receipt,
 }) => {
   const [receiptViolationObject, setReceipt] = useState<any>();
-  const [showViolationDetail, setShowViolationDetail] = useState<boolean>(false);
+  const [showViolationDetail, setShowViolationDetail] =
+    useState<boolean>(false);
   const [violations, setViolations] = useState<Array<Violation>>();
 
   useEffect(() => {
     if (receipt?.data1) {
-        console.log(receipt?.data1)
+      console.log(receipt?.data1);
       setReceipt(JSON.parse(receipt?.data1));
     }
   }, []);
 
   useEffect(() => {
     if (receiptViolationObject) {
-    //   console.log(receiptViolationObject.violations);
-      setViolations(receiptViolationObject.violations);
+      //   console.log(receiptViolationObject.violations);
+      if (receiptViolationObject.violations) {
+        setViolations(receiptViolationObject.violations);
+      }
+      if (Array.isArray(receiptViolationObject)) {
+        console.log(receiptViolationObject)
+        setViolations(receiptViolationObject);
+        setShowViolationDetail(true)
+      }
     }
   }, [receiptViolationObject]);
   const isMdDown = useIsMdDown();
@@ -71,18 +79,19 @@ const ViolationReceiptDetails: React.FC<ReceiptDatailPropInterface> = ({
       />
       {receiptViolationObject && (
         <>
-          <ListMakerFromObject
-            obj={receiptViolationObject}
-         
-          />{" "}
+          <ListMakerFromObject obj={receiptViolationObject} key={Date.now()}/>{" "}
         </>
       )}
       {violations && showViolationDetail && (
         <>
-          <Box  className="full-width" style={{ overflowX: "scroll" }} sx={{my:2}}>
-            <div className="d-flex flex-start" >
+          <Box
+            className="full-width"
+            style={{ overflowX: "scroll" }}
+            sx={{ my: 2 }}
+          >
+            <div className="d-flex flex-start">
               {violations.map((item: any, index: number) => (
-                <div className="mx-1" style={{ width: "800px" }}  key={index}>
+                <div className="mx-1" style={{ width: "800px" }} key={index}>
                   <BoxWrapper>
                     <ListMakerFromObject obj={item} fontSize={0.6} />
                   </BoxWrapper>
@@ -92,27 +101,31 @@ const ViolationReceiptDetails: React.FC<ReceiptDatailPropInterface> = ({
           </Box>
         </>
       )}
+      <Box sx={{ my: 3 }} />
+      {receiptViolationObject?.violations && (
+        <>
+          <Button
+            variant="contained"
+            disableElevation
+            sx={{ mx: 2, my: 2 }}
+            style={{ color: "var(--white)" }}
+          >
+            پرداخت تجمیعی
+          </Button>
 
-      <Button
-        variant="contained"
-        disableElevation
-        sx={{ mx: 2 , my:2}}
-        style={{ color: "var(--white)" }}
-      >
-        پرداخت تجمیعی
-      </Button>
-      {violations && 
-
-      <Button
-      onClick={()=>{setShowViolationDetail(prev=>!prev)}}
-        variant="contained"
-        disableElevation
-        sx={{ mx: 2 , my:2}}
-        style={{ color: "var(--white)" }}
-      >
-        مشاهده جزییات خلافی
-      </Button>
-      }
+          <Button
+            onClick={() => {
+              setShowViolationDetail((prev) => !prev);
+            }}
+            variant="contained"
+            disableElevation
+            sx={{ mx: 2, my: 2 }}
+            style={{ color: "var(--white)" }}
+          >
+            مشاهده جزییات خلافی
+          </Button>
+        </>
+      )}
       <Box
         sx={{
           display: "flex",

@@ -95,6 +95,12 @@ export const translateKey = (key: string): string => {
     ocumentPrintDate: "تاریخ چاپ سند",
     ocumentPostalBarcod: "بارکد پستی سند",
     ocumentStatusTitle: "عنوان وضعیت سند",
+    serial: "شماره سریال",
+    licensePlateNumber: "شماره پلاک",
+    description: "توضیحات",
+    separationDate: "تاریخ",
+    licensePlate: "پلاک",
+
   };
 
   return translations[key] || key;

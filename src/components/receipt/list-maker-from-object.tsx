@@ -20,9 +20,9 @@ export const ListMakerFromObject: React.FC<any> = ({
 }) => {
   const isMdDown = useIsMdDown();
   return (
-    <List sx={{ maxHeight: 700, overflow: "auto" }}>
+    <List sx={{ maxHeight: 700, overflow: "auto" ,width:"100%"}}>
       {Object.keys(obj).map((key) => (
-        <>
+        <div key={key} style={{width:"100%"}}>
           {ignoredKey.indexOf(key) == -1 &&
             (typeof obj[key as keyof any] == "string"   || typeof obj[key as keyof any] == "number" )&& (
               <>
@@ -31,6 +31,7 @@ export const ListMakerFromObject: React.FC<any> = ({
                   className={`d-flex  justify-space-between align-center ${
                     isMdDown ? "" : "mt-1"
                   }  full-width`}
+                  sx ={{width : "100%"}}
                 >
                   <>
                     {(typeof obj[key as keyof any] == "string" || typeof obj[key as keyof any] == "number") && (
@@ -57,7 +58,7 @@ export const ListMakerFromObject: React.FC<any> = ({
                   <Divider />
               </>
             )}
-        </>
+        </div>
       ))}
     </List>
   );

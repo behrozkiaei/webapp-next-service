@@ -6,12 +6,11 @@ import { ThemeProvider } from "@emotion/react";
 import { createTheme } from "@mui/material";
 import { StrictMode } from "react";
 
-
 const theme = createTheme({
   palette: {
     primary: {
       main: "#00bc3b",
-      contrastText: "#fffff" //button text white instead of black
+      contrastText: "#fffff", //button text white instead of black
     },
     secondary: {
       main: "#01286d",
@@ -20,7 +19,7 @@ const theme = createTheme({
       main: "#ff5252",
     },
   },
-  
+
   direction: "rtl",
   components: {
     MuiInputLabel: {
@@ -44,19 +43,19 @@ export default function RootLayout({
   return (
     <html lang="en" dir="rtl">
       <StrictMode>
-
-      <ThemeProvider theme={theme}>
-        <body>
-
-          <>
-          <meta name="google-site-verification" content="dickrgEVPW5-UD9YnRBq0AF2TLFXPMW4IN6Pr5DLgxI" />
-            {children}
-            <FetchMe />
-          </>
-        </body>
-        
-      </ThemeProvider>
-        </StrictMode>
+        <ThemeProvider theme={theme}>
+          <body>
+            <>
+              <meta
+                name="google-site-verification"
+                content="dickrgEVPW5-UD9YnRBq0AF2TLFXPMW4IN6Pr5DLgxI"
+              />
+              {children}
+              <FetchMe />
+            </>
+          </body>
+        </ThemeProvider>
+      </StrictMode>
     </html>
   );
 }

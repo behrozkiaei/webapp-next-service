@@ -67,7 +67,7 @@ export default function NegetivePoint() {
       await negetivePointInquiry({
         driverLicenseNumber: license!,
         fromWallet: isLoggedIn ? fromWallet :false,
-        najiId: selectedNajiUser.id,
+        najiId: selectedNajiUser.najiId ?? "",
       });
     }
   };
@@ -138,7 +138,7 @@ export default function NegetivePoint() {
                           mode="mobile"
                           title="شماره موبایل"
                           error={""}
-                          placeholder="*********09"
+                          placeholder="09*********"
                           maxLength={11}
                           minLength={11}
                           disabled={
@@ -176,11 +176,11 @@ export default function NegetivePoint() {
                             if (data.value) setLicense(data.value!);
                           }}
                           error={""}
-                          placeholder="شماره ده رقمی روی کارت گواهینامه"
+                          placeholder="ده رقمی"
                           maxLength={10}
                           minLength={10}
                           disabled={
-                            isLoading || selectedNajiUser ? true : false
+                            isLoading 
                           }
                           title="شماره گواهی نامه"
                           type="tel"

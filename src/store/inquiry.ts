@@ -370,6 +370,7 @@ const useInquiryStore = create<InquiryStoreState>((set, get) => ({
   },
   negetivePointInquiry: async (data) => {
     try {
+      set((state) => ({ ...state, isLoading: true }));
       const res = await negetivePointRepo(data);
       const redirectStatus =
         res.status && res.result?.RedirectURL && data.fromWallet == false;
@@ -395,11 +396,13 @@ const useInquiryStore = create<InquiryStoreState>((set, get) => ({
       return;
     } catch (error) {
     } finally {
+      set((state) => ({ ...state, isLoading: false }));
       //console.log(get());
     }
   },
   activePlteInquiry: async (data: QueryWithNajiId) => {
     try {
+      set((state) => ({ ...state, isLoading: true }));
       const res = await activePlatesRepo(data);
       const redirectStatus =
         res.status && res.result?.RedirectURL && data.fromWallet == false;
@@ -425,11 +428,13 @@ const useInquiryStore = create<InquiryStoreState>((set, get) => ({
       return;
     } catch (error) {
     } finally {
+      set((state) => ({ ...state, isLoading: false }));
       //console.log(get());
     }
   },
   passportStatusInquiry: async (data: QueryWithNajiId) => {
     try {
+      set((state) => ({ ...state, isLoading: true }));
       const res = await passportStatusRepo(data);
       const redirectStatus =
         res.status && res.result?.RedirectURL && data.fromWallet == false;
@@ -455,11 +460,13 @@ const useInquiryStore = create<InquiryStoreState>((set, get) => ({
       return;
     } catch (error) {
     } finally {
+      set((state) => ({ ...state, isLoading: false }));
       //console.log(get());
     }
   },
   ountryLeavingStatusInquiry: async (data: QueryWithNajiId) => {
     try {
+      set((state) => ({ ...state, isLoading: true }));
       const res = await countryLeavingStatusRepo(data);
       const redirectStatus =
         res.status && res.result?.RedirectURL && data.fromWallet == false;
@@ -485,11 +492,13 @@ const useInquiryStore = create<InquiryStoreState>((set, get) => ({
       return;
     } catch (error) {
     } finally {
+      set((state) => ({ ...state, isLoading: false }));
       //console.log(get());
     }
   },
   DocumentStatusInquiry: async (data: QueryWithPlateId) => {
     try {
+      set((state) => ({ ...state, isLoading: true }));
       const res = await DocumentStatusRepo(data);
       const redirectStatus =
         res.status && res.result?.RedirectURL && data.fromWallet == false;
@@ -509,6 +518,7 @@ const useInquiryStore = create<InquiryStoreState>((set, get) => ({
       return;
     } catch (error) {
     } finally {
+      set((state) => ({ ...state, isLoading: false }));
       //console.log(get());
     }
   },
