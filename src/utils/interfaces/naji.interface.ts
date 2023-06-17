@@ -191,5 +191,7 @@ export type QueryModeType =
   | "country-leaving-status"
   | "active-plates"
   | "document"
+  | "passport"
+
   | "khalafi"
   | "";

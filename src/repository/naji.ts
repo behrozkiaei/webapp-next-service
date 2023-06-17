@@ -105,7 +105,7 @@ export const countryLeavingStatusRepo = async (
 ): Promise<AxiosDataResponse<NajiResponse<CountryLeavingResponse>>> => {
   try {
     const response = await axiosInstance().post(
-      "/naji/country-leaving-status",
+      "/naji/leaving-status",
       data
     );
     return {

@@ -71,6 +71,10 @@ export default function NegetivePoint() {
       setModeFa("استعلام  وضعیت پاسپورت ");
     }
 
+    if (queryModeParam == "passport") {
+      setQueryMode("passport");
+      setModeFa("استعلام وضعیت پاسپورت ");
+    }
     if (queryModeParam == "country-leaving-status") {
       setQueryMode("country-leaving-status");
       setModeFa("استعلام وضعیت خروج از کشور ");
@@ -88,7 +92,7 @@ export default function NegetivePoint() {
     verified && checkMobileAndNationalCodeExist(mobile, nationalCode, true);
   }, [mobile, nationalCode, checkMobileAndNationalCodeExist]);
   const submitForm = async () => {
-    if (selectedNajiUser) {
+    if (selectedNajiUser?.najiId ) {
       queryModeParam == "active-plates" &&
         (await activePlteInquiry({
           fromWallet: fromWallet,
@@ -97,12 +101,18 @@ export default function NegetivePoint() {
       queryModeParam == "passport-status" &&
         (await passportStatusInquiry({
           fromWallet: fromWallet,
-          najiId: selectedNajiUser.id,
+          najiId: selectedNajiUser.najiId ??"",
         }));
       queryModeParam == "country-leaving-status" &&
         (await ountryLeavingStatusInquiry({
           fromWallet: isLoggedIn ? fromWallet : false,
-          najiId: selectedNajiUser.id,
+          najiId: selectedNajiUser.najiId ?? "",
+        }));
+
+        queryModeParam == "passport" &&
+        (await passportStatusInquiry({
+          fromWallet: isLoggedIn ? fromWallet : false,
+          najiId: selectedNajiUser.najiId ?? "",
         }));
     }
   };

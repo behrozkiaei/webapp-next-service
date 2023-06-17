@@ -31,13 +31,13 @@ export default function DocumentSection() {
         text="استعلام وضعیت کارت و سند خودرو"
       />
 
-      {/* <ServiceButton
-        href="/police-inquiry/driver-license-status"
-        title="استعلام وضعیت گواهینامه"
+      <ServiceButton
+        href="/police-inquiry/naji-document?query=passport"
+        title="استعلام وضعیت پاسپورت"
         src="./icons/Driving-license-inquiry.svg"
-        alt="استعلام وضعیت گواهینامه"
-        text="استعلام وضعیت گواهینامه"
-      /> */}
+        alt="استعلام وضعیت پاسپورت"
+        text="استعلام وضعیت پاسپورت"
+      />
 
       <ServiceButton
         href="police-inquiry/naji-document?query=active-plates"

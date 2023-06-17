@@ -15,6 +15,7 @@ import ShareIcon from "@mui/icons-material/Share";
 import { useEffectOnce, useStateList } from "react-use";
 import { ReceiptTitleHeaderBox } from "./top-receipt-title-desc";
 import { addCommas } from "@persian-tools/persian-tools";
+import { responseValueToFaKey, translateKey } from "@/utils/heplers/bill.helper";
 const dotStyle = {
   position: "absolute",
   bottom: 19,
@@ -67,10 +68,10 @@ const ReceiptDetails: React.FC<ReceiptDatailPropInterface> = ({ receipt }) => {
                   }}
                 >
                   <Box sx={{ bgcolor: "white", paddingLeft: 2 }}>
-                    {item.key}
+                    {translateKey(item.key)}
                   </Box>
                   <Box sx={{ bgcolor: "white", paddingRight: 2 }}>
-                    {item.value}
+                    {responseValueToFaKey(item.key,item.value)}
                   </Box>
                 </Box>
               </ListItem>

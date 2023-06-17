@@ -100,6 +100,15 @@ export const translateKey = (key: string): string => {
     description: "توضیحات",
     separationDate: "تاریخ",
     licensePlate: "پلاک",
+    isPersonFound : "شخص پیدا شده است؟",
+    expiryDate: "تاریخ انقضا",
+    issueDate: "تاریخ درخواست",
+    passportNo: "شماره پاسپورت",
+    postBarcode: "بارکد پاسپورت",
+    requestDate: "تاریخ درخواست",
+    requestStatue: "وضعیت",
+    hasRequest: "درخواست داده شده؟",
+    hasPassport: "پاسپورت دارد؟",
 
   };
 
