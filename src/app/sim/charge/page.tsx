@@ -9,6 +9,7 @@ import ScrollableButtonListVertical from "@/components/core/scrollable-button-li
 import useIsMdDown from "@/components/effects/isMdDown";
 import Footer from "@/components/footer";
 import Header from "@/components/header";
+import Head from "@/components/meta-head";
 import PageWrapper from "@/components/page-wrapper";
 import TopFooter from "@/components/top-footer";
 import TopMenu from "@/components/top-menu";
@@ -23,6 +24,7 @@ import {
   operatorType,
   simTypes,
 } from "@/utils/heplers/operator-finder";
+
 import { useEffect, useRef, useState } from "react";
 // import { useSearchParam } from "react-use";
 //import { NextSeo } from "next-seo";
@@ -134,13 +136,14 @@ export default function Khalafi() {
   }, [productIndex, internetPackages]);
   return (
     <>
-      {/* <NextSeo
-      title="نکست سون، خدمات یکپارچه خودرو، قبض و سیم کارت"
-      description="نکست سون|  خدمات یکپارچه خودرو، استعلام و پرداخت عوارض و بیمه ماشین"
-    /> */}
-      {chargeOrInternet && (
-        <title>خرید ${chargeOrInternet == "charge" ? "شارژ" : "اینترنت"}</title>
-      )}
+
+     <Head
+          title="نکست سون، خدمات یکپارچه خودرو، قبض و سیم کارت"
+          description="نکست سون| خرید شارژ و ایترنت"
+        />
+
+        <title>{"نکست سون، خدمات یکپارچه خودرو، قبض و سیم کارت"}</title>
+      
 
       <div>
         <div className="--is-rtl theme--light">
