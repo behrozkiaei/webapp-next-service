@@ -41,7 +41,13 @@ const useAuthStore = create<StoreState>((set, get) => ({
         ...state,
         redirectUrl: res.result?.RedirectURL
       }));
-     
+      if (res.message) {
+        set((state) => ({
+          ...state,
+          error: res.message,
+        }));
+        throw Error;
+      }
       console.log(get());
     } catch (e) {
       console.log(e);

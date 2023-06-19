@@ -34,6 +34,8 @@ const useBillStore = create<BillStoreInterface>((set, get) => ({
       if (res.status && res.result) {
         //save the result
         set((state) => ({ ...state, billCheckData: res.result }));
+      }else if(res.message){
+        set((state) => ({ ...state, error: res.message }));
       }
       console.log(res);
       return;
@@ -52,6 +54,9 @@ const useBillStore = create<BillStoreInterface>((set, get) => ({
         if (res.status && res.result) {
           //save the result
           set((state) => ({ ...state, billCheckData: res.result }));
+        }else if(res.message){
+          console.log(res)
+          set((state) => ({ ...state, error: res.message }));
         }
         console.log(res);
         return;
@@ -81,6 +86,9 @@ const useBillStore = create<BillStoreInterface>((set, get) => ({
         if (res.status && res.result && res.result.order_id) {
             //save the result
             set((state) => ({ ...state, orderId: res.result?.order_id }));
+          }
+          if(res.message){
+            set((state) => ({ ...state, error: res.message }));
           }
         console.log(res);
         return;

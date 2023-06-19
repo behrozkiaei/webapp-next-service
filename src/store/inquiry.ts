@@ -43,6 +43,7 @@ import {
   Plate as platePersianTool,
   verifyIranianNationalId,
 } from "@persian-tools/persian-tools";
+import { error } from "console";
 import { create } from "zustand";
 export interface InquiryStoreState {
   payload: any;
@@ -119,6 +120,13 @@ const useInquiryStore = create<InquiryStoreState>((set, get) => ({
           mobile,
           nationalCode
         );
+        if (res.message) {
+          set((state) => ({
+            ...state,
+            error: res.message,
+          }));
+          throw Error;
+        }
         console.log(res);
         const userVerified =
           res.status && res.result?.nationalCodeVerified && res.result.najiId;
@@ -150,19 +158,26 @@ const useInquiryStore = create<InquiryStoreState>((set, get) => ({
       try {
         set((state) => ({ ...state, isLoading: true }));
         const res = await getPlateByPlateInfo(plate);
-        console.log("sdfksjfjsdfljslfjskdljfksdjfj",res)
+        console.log("sdfksjfjsdfljslfjskdljfksdjfj", res);
         if (res.status && res.result) {
-          console.log(res.result)
+          console.log(res.result);
           set((state) => ({ ...state, selectedPlate: res.result }));
           if (res.result.naji) {
             set((state) => ({ ...state, selectedNajiUser: res.result?.naji }));
           }
         }
-        console.log("after add",get());
+        if (res.message) {
+          set((state) => ({
+            ...state,
+            error: res.message,
+          }));
+          throw Error;
+        }
+        console.log("after add", get());
       } catch {
       } finally {
         set((state) => ({ ...state, isLoading: false }));
-        console.log("after add catch",get());
+        console.log("after add catch", get());
       }
     }
   },
@@ -193,7 +208,13 @@ const useInquiryStore = create<InquiryStoreState>((set, get) => ({
         set((state) => ({ ...state, isLoading: false }));
       }
       console.log(res);
-      //console.log(get());
+      if (res.message) {
+        set((state) => ({
+          ...state,
+          error: res.message,
+        }));
+        throw Error;
+      }
       return;
     } catch (e) {
       console.log(e);
@@ -226,7 +247,13 @@ const useInquiryStore = create<InquiryStoreState>((set, get) => ({
         set((state) => ({ ...state, error: res.message }));
       }
       console.log(res);
-      //console.log(get());
+      if (res.message) {
+        set((state) => ({
+          ...state,
+          error: res.message,
+        }));
+        throw Error;
+      }
       return;
     } catch (e) {
       console.log(e);
@@ -263,6 +290,13 @@ const useInquiryStore = create<InquiryStoreState>((set, get) => ({
       if (!res.status && res.message) {
         set((state) => ({ ...state, error: res.message }));
       }
+      if (res.message) {
+        set((state) => ({
+          ...state,
+          error: res.message,
+        }));
+        throw Error;
+      }
       console.log(res);
       //console.log(get());
       return;
@@ -278,7 +312,13 @@ const useInquiryStore = create<InquiryStoreState>((set, get) => ({
       set((state) => ({ ...state, isLoading: true }));
       const res = await violationAggregateWithoutRegistrationRepo(data);
       set((state) => ({ ...state, redirectLink: res.result?.RedirectURL }));
-
+      if (res.message) {
+        set((state) => ({
+          ...state,
+          error: res.message,
+        }));
+        throw Error;
+      }
       return;
     } catch (e) {
       console.log(e);
@@ -362,6 +402,14 @@ const useInquiryStore = create<InquiryStoreState>((set, get) => ({
       !res.status &&
         res.message &&
         set((state) => ({ ...state, error: res.message }));
+
+      if (res.message) {
+        set((state) => ({
+          ...state,
+          error: res.message,
+        }));
+        throw Error;
+      }
       return;
     } catch (error) {
     } finally {
@@ -393,6 +441,14 @@ const useInquiryStore = create<InquiryStoreState>((set, get) => ({
       !res.status &&
         res.message &&
         set((state) => ({ ...state, error: res.message }));
+
+      if (res.message) {
+        set((state) => ({
+          ...state,
+          error: res.message,
+        }));
+        throw Error;
+      }
       return;
     } catch (error) {
     } finally {
@@ -425,6 +481,14 @@ const useInquiryStore = create<InquiryStoreState>((set, get) => ({
       !res.status &&
         res.message &&
         set((state) => ({ ...state, error: res.message }));
+
+      if (res.message) {
+        set((state) => ({
+          ...state,
+          error: res.message,
+        }));
+        throw Error;
+      }
       return;
     } catch (error) {
     } finally {
@@ -452,11 +516,19 @@ const useInquiryStore = create<InquiryStoreState>((set, get) => ({
           passportStatus: res.result,
           orderId: res.result?.order?.id,
         }));
+
         return;
       }
       !res.status &&
         res.message &&
         set((state) => ({ ...state, error: res.message }));
+      if (res.message) {
+        set((state) => ({
+          ...state,
+          error: res.message,
+        }));
+        throw Error;
+      }
       return;
     } catch (error) {
     } finally {
@@ -489,6 +561,13 @@ const useInquiryStore = create<InquiryStoreState>((set, get) => ({
       !res.status &&
         res.message &&
         set((state) => ({ ...state, error: res.message }));
+      if (res.message) {
+        set((state) => ({
+          ...state,
+          error: res.message,
+        }));
+        throw Error;
+      }
       return;
     } catch (error) {
     } finally {
@@ -515,6 +594,13 @@ const useInquiryStore = create<InquiryStoreState>((set, get) => ({
       !res.status &&
         res.message &&
         set((state) => ({ ...state, error: res.message }));
+      if (res.message) {
+        set((state) => ({
+          ...state,
+          error: res.message,
+        }));
+        throw Error;
+      }
       return;
     } catch (error) {
     } finally {

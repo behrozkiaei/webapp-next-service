@@ -73,7 +73,7 @@ const useChargeAndInternetStore = create<ChargeAndInternetStoreInterface>(
         if (res.message) {
           set((state) => ({
             ...state,
-            result: res.message,
+            error: res.message,
           }));
         }
         console.log(get());
@@ -117,7 +117,7 @@ const useChargeAndInternetStore = create<ChargeAndInternetStoreInterface>(
           if (res.message) {
             set((state) => ({
               ...state,
-              result: res.message,
+              error: res.message,
             }));
           }
           console.log(get());
@@ -145,6 +145,12 @@ const useChargeAndInternetStore = create<ChargeAndInternetStoreInterface>(
           ...state,
           internetPackages: res.result,
         }));
+        if (res.message) {
+          set((state) => ({
+            ...state,
+            error: res.message,
+          }));
+        }
         console.log(get());
       } catch (e) {
         console.log(e);

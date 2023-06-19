@@ -25,6 +25,13 @@ const useOrderStore = create<OrderStoreInterface>((set, get) => ({
         //save the result
         set((state) => ({ ...state, data: res.result }));
       }
+      if (res.message) {
+        set((state) => ({
+          ...state,
+          error: res.message,
+        }));
+        throw Error;
+      }
       console.log(res);
       return;
     } catch (e) {
