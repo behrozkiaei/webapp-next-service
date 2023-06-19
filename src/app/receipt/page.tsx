@@ -47,7 +47,7 @@ const Recipt = () => {
       <div className=" d-flex  justify-center   mt-10 full-width">
         {receipt && (
           <>
-            {(receipt.type!.toString().includes("VIOLATION") ||  receipt.type!.toString().includes("DRIVING_LICENSE") ||  receipt.type!.toString().includes("DRIVING_LICENSE") ||  receipt.type!.toString().includes("ACTIVE_PLATES")) ? (
+            {(receipt.type!.toString().includes("VIOLATION") ||  receipt.type!.toString().includes("DRIVING_LICENSE") ||  receipt.type!.toString().includes("ACTIVE_PLATES")) ? (
               <ViolationReceiptDetails receipt={receipt}></ViolationReceiptDetails>
             ) : (
               <ReceiptDetails receipt={receipt} />

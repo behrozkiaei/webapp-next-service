@@ -18,7 +18,7 @@ export const translateKey = (key: string): string => {
     msg: "پیام",
     type_en: "نوع (انگلیسی)",
     type_fa: "نوع (فارسی)",
-    amount: "مقدار",
+    amount: "مبلغ به ریال",
     pay_type: "نوع پرداخت",
     orderId: "شناسه سفارش",
     url: "لینک",

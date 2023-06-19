@@ -6,6 +6,7 @@ import {
   SimTypes,
 } from "../enums/charge-internet";
 import { Irancell } from "@persian-tools/persian-tools/build/modules/phoneNumber/utils";
+import { Period } from "../interfaces/bill.interface";
 
 export const findOperator = (mobile: string) => {
   const detail = phoneNumberDetail(mobile) as any;
@@ -107,6 +108,21 @@ export const operatorType = [
     value: OperatorType.Rightel,
     shortName: OperatorShortName.RTL,
   },
+];
+export const periodType = [
+  {
+    content: "میان دوره",
+    color: OperatorColors.Hamrah,
+    value: Period.mid,
+    shortName: "میان دوره",
+  },
+  {
+    content: "پایان دوره",
+    color: OperatorColors.Irancel,
+    value: Period.final,
+    shortName: "پایان دوره",
+  }
+ 
 ];
 export const amountBaseOnOperator = (operator :string)=>{
   switch (operator) {

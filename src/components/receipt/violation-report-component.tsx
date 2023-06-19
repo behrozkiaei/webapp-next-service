@@ -1,27 +1,19 @@
 "use client";
-import {
-  responseValueToFaKey,
-  translateKey,
-} from "@/utils/heplers/bill.helper";
-import {
-  Violation,
-  ViolationReportResponse,
-} from "@/utils/interfaces/naji.interface";
+import { Violation } from "@/utils/interfaces/naji.interface";
 import { OrderInterface } from "@/utils/interfaces/order.interface";
 import ShareIcon from "@mui/icons-material/Share";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
-import Divider from "@mui/material/Divider";
 import IconButton from "@mui/material/IconButton";
-import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
 import Paper from "@mui/material/Paper";
 import { addCommas } from "@persian-tools/persian-tools";
 import React, { useEffect, useState } from "react";
-import useIsMdDown from "../effects/isMdDown";
-import { ReceiptTitleHeaderBox } from "./top-receipt-title-desc";
-import { ListMakerFromObject } from "./list-maker-from-object";
 import { BoxWrapper } from "../core/box-wrapper";
+import useIsMdDown from "../effects/isMdDown";
+import { ListMakerFromObject } from "./list-maker-from-object";
+import { ReceiptTitleHeaderBox } from "./top-receipt-title-desc";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
 const dotStyle = {
   position: "absolute",
   bottom: 19,
@@ -46,7 +38,7 @@ const ViolationReceiptDetails: React.FC<ReceiptDatailPropInterface> = ({
 }) => {
   const [receiptViolationObject, setReceipt] = useState<any>();
   const [showViolationDetail, setShowViolationDetail] =
-    useState<boolean>(false);
+    useState<boolean>(true);
   const [violations, setViolations] = useState<Array<Violation>>();
 
   useEffect(() => {
@@ -63,9 +55,9 @@ const ViolationReceiptDetails: React.FC<ReceiptDatailPropInterface> = ({
         setViolations(receiptViolationObject.violations);
       }
       if (Array.isArray(receiptViolationObject)) {
-        console.log(receiptViolationObject)
+        console.log(receiptViolationObject);
         setViolations(receiptViolationObject);
-        setShowViolationDetail(true)
+        setShowViolationDetail(true);
       }
     }
   }, [receiptViolationObject]);
@@ -79,25 +71,22 @@ const ViolationReceiptDetails: React.FC<ReceiptDatailPropInterface> = ({
       />
       {receiptViolationObject && (
         <>
-          <ListMakerFromObject obj={receiptViolationObject} key={Date.now()}/>{" "}
+          <ListMakerFromObject obj={receiptViolationObject} />{" "}
         </>
       )}
       {violations && showViolationDetail && (
         <>
-          <Box
-            className="full-width"
-            style={{ overflowX: "scroll" }}
-            sx={{ my: 2 }}
-          >
-            <div className="d-flex flex-start">
+          <Box className="full-width" sx={{ my: 2 }}>
+            {/* <div className="d-flex flex-start"> */}
+            <Swiper className="mx-1" spaceBetween={50} slidesPerView={3}>
               {violations.map((item: any, index: number) => (
-                <div className="mx-1" style={{ width: "800px" }} key={index}>
-                  <BoxWrapper>
+                <SwiperSlide key={index}>
+                  <BoxWrapper key={index}>
                     <ListMakerFromObject obj={item} fontSize={0.6} />
                   </BoxWrapper>
-                </div>
+                </SwiperSlide>
               ))}
-            </div>
+            </Swiper>
           </Box>
         </>
       )}

@@ -133,9 +133,9 @@ export default function Khalafi() {
                       {}
                       <List>
                         {Object.keys(billCheckData).map((key) => (
-                          <>
+                          <div  key={key} >
                             <ListItem
-                              key={key}
+                            
                               className={`d-flex  justify-space-between align-center ${
                                 isMdDown ? "" : "mt-4"
                               }  full-width`}
@@ -153,7 +153,7 @@ export default function Khalafi() {
                               </>
                             </ListItem>
                             <Divider />
-                          </>
+                          </div>
                         ))}
                         <div className="devider"></div>
                       </List>

@@ -23,6 +23,7 @@ import {
   OperatorTypeInterface,
   findOperator,
   operatorType,
+  periodType,
   simTypes,
 } from "@/utils/heplers/operator-finder";
 import {
@@ -51,13 +52,14 @@ export default function Khalafi() {
   const [operator, setOperator] = useState<OperatorTypeInterface>();
   const { isLoggedIn } = useAuthStore();
   const [operatorDefaultValue, setOperatorDefaultValue] = useState<number>(-1);
+  const [periodDefaultValue, setPeriodDefaultValue] = useState<number>(0);
   const [simTypeDefault, setSymTypeDefault] = useState<string>("DAEMI");
   const [simTypeColor, setSimTypeColor] = useState<string>("lightblue");
   const [inquiyMode, setInquiryMode] = useState<BillType | "">("");
-  const { isLoading, billCheckData, inquryBill, set, checkBill } =
+  const { isLoading, billCheckData, inquryBill, set, checkBill ,payBill,redirectUrl} =
     useBillStore();
   const isMdDown = useIsMdDown();
-
+const [period , setPeriod] = useState<Period>(Period.mid)
   const [queryModeParam, setQueryModeParam] = useState<string>("");
   const submitForm = async () => {
     if (!isBillType(inquiyMode)) {
@@ -69,14 +71,16 @@ export default function Khalafi() {
       bill_type: inquiyMode,
       mobile: mobile ?? undefined,
       operator: operator?.shortName,
-      period: Period.mid,
+      period: period ? period : Period.mid,
       phone: id ?? undefined,
       bill_id: id ?? undefined,
       participate_code: id ?? undefined,
     };
     await inquryBill(payload);
   };
-
+useEffect(()=>{
+  if (redirectUrl) window.location.href = redirectUrl;
+},[redirectUrl])
   useEffect(() => {
     if (queryModeParam) {
       if (isBillType(queryModeParam)) {
@@ -104,9 +108,10 @@ export default function Khalafi() {
     const bill_id = billCheckData?.bill_id;
     const pay_id = billCheckData?.pay_id;
     if (bill_id && pay_id) {
-      await checkBill({
-        payId: bill_id.toString(),
-        billId: pay_id.toString(),
+      await payBill({
+        payId: pay_id.toString(),
+        billId: bill_id.toString(),
+        frmoWallet : isLoggedIn ? fromWallet : false,
       });
     }
   };
@@ -196,6 +201,20 @@ export default function Khalafi() {
                               />
                             </div>
                           )}
+                            {operatorDefaultValue >= 0 && (
+                            <div className=" d-flex justify-space-between align-center mt-4 full-width">
+                              <p className="mid_gray--text ">نوع دوره:</p>
+                              <MyButtonGroup
+                                buttons={periodType}
+                                defaultValue={periodDefaultValue}
+                                selectedColor={simTypeColor}
+                                onSelect={(data) => {
+                                  setPeriod(data.value as Period);
+                                  // setSimTypeColor(value.color);
+                                }}
+                              />
+                            </div>
+                          )}
                         </>
                       )}
                       {inquiyMode != BillType.mobile && (
@@ -207,7 +226,7 @@ export default function Khalafi() {
                           <MyInput
                             value={id}
                             onChange={(data) => {
-                              setMobile(data.value);
+                              setId(data.value);
                               setBillIdHasError(data.hasError);
                             }}
                             title={
@@ -281,7 +300,19 @@ export default function Khalafi() {
                         />
                       </div>
                     )}
+                      {isLoggedIn && billCheckData && (
+                        <div className="d-flex justify-start align-center mt-4 full-width">
+                          <WalletOrCredit
+                            defaultSelected="credit"
+                            onSelectionChange={(selected) => {
+                              setPayment(selected == "wallet" ? true : false);
+                            }}
+                          />
+                        </div>
+                      )}
                     {billCheckData && (
+
+
                       <div
                         style={{ marginTop: "20px" }}
                         className="full-width d-flex justify-center"
