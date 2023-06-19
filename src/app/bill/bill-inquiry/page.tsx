@@ -42,6 +42,7 @@ import { Icons } from "react-toastify";
 import { useRouter } from 'next/router';
 
 import DynamicAuthedButton from "@/components/Button/dynamic-auth-button";
+import { ListMakerFromObject } from "@/components/receipt/list-maker-from-object";
 export default function Khalafi() {
   const [mobile, setMobile] = useState<string>("");
   const [id, setId] = useState<string>("");
@@ -255,32 +256,8 @@ useEffect(()=>{
                           isMdDown ? "" : "mt-4"
                         }  full-width`}
                       >
-                        <List className="full-width">
-                          {Object.keys(billCheckData).map((key) => (
-                            <>
-                              <ListItem
-                                key={key}
-                                className={`d-flex  justify-space-between align-center full-width ${
-                                  isMdDown ? "" : "mt-4"
-                                }  full-width`}
-                              >
-                                <>
-                                  <p>{translateKey(key)}</p>
-                                  <p>
-                                    {responseValueToFaKey(
-                                      key,
-                                      billCheckData[
-                                        key as keyof BillInquiryResponseRepoInterface
-                                      ]
-                                    )}
-                                  </p>
-                                </>
-                              </ListItem>
-                              <Divider />
-                            </>
-                          ))}
-                          <div className="devider"></div>
-                        </List>
+
+                      <ListMakerFromObject obj={billCheckData}  ignoredKey={["code" , "orderId"]}/> 
                       </div>
                     )}
 

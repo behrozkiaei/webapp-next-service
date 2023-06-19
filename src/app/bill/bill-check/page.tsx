@@ -6,6 +6,7 @@ import useIsMdDown from "@/components/effects/isMdDown";
 import Footer from "@/components/footer";
 import Header from "@/components/header";
 import PageWrapper from "@/components/page-wrapper";
+import { ListMakerFromObject } from "@/components/receipt/list-maker-from-object";
 import TopFooter from "@/components/top-footer";
 import TopMenu from "@/components/top-menu";
 import "@/globals.css";
@@ -118,7 +119,7 @@ export default function Khalafi() {
                           width="100%"
                           height="40px"
                           disabled={billHassError || payIdHassError}
-                          isLoading={false}
+                          isLoading={isLoading }
                           onClick={submitForm}
                         />
                       </div>
@@ -130,33 +131,8 @@ export default function Khalafi() {
                         isMdDown ? "" : "mt-4"
                       }  full-width`}
                     >
-                      {}
-                      <List>
-                        {Object.keys(billCheckData).map((key) => (
-                          <div  key={key} >
-                            <ListItem
-                            
-                              className={`d-flex  justify-space-between align-center ${
-                                isMdDown ? "" : "mt-4"
-                              }  full-width`}
-                            >
-                              <>
-                                <p>{translateKey(key)}</p>
-                                <p>
-                                  {responseValueToFaKey(
-                                      key,
-                                      billCheckData[
-                                        key as keyof BillInquiryResponseRepoInterface
-                                      ]
-                                    )}
-                                </p>
-                              </>
-                            </ListItem>
-                            <Divider />
-                          </div>
-                        ))}
-                        <div className="devider"></div>
-                      </List>
+                          <ListMakerFromObject obj={billCheckData}  ignoredKey={["code" , "orderId"]}/> 
+
                     </div>
                   )}
                 </div>
