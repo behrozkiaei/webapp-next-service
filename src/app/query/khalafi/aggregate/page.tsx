@@ -68,7 +68,7 @@ export default function Khalafi() {
   return (
     <>
       <title>
-        های؛ خدمات یکپارچه خودرو، استعلام و پرداخت عوارض و بیمه ماشین
+        نکست سون؛ خدمات یکپارچه خودرو، استعلام و پرداخت عوارض و بیمه ماشین
       </title>
       <div>
         <div className="--is-rtl theme--light">

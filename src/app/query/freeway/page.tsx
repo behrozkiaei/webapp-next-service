@@ -18,7 +18,7 @@ export default function Khalafi() {
   return (
     <>
       <title>
-        های؛ خدمات یکپارچه خودرو، استعلام و پرداخت عوارض و بیمه ماشین
+        نکست سون؛ خدمات یکپارچه خودرو، استعلام و پرداخت عوارض و بیمه ماشین
       </title>
       <div>
         <div className="--is-rtl theme--light">
@@ -45,7 +45,7 @@ export default function Khalafi() {
                     </div>
                     <TitleDesc
                     title="  استعلام و پرداخت عوارض آزادراهی "
-                    desc1="  های؛ سامانه استعلام و پرداخت عوارض آزادراه، جاده‌ای و بزرگراهی "
+                    desc1="  نکست سون؛ سامانه استعلام و پرداخت عوارض آزادراه، جاده‌ای و بزرگراهی "
                     />
                     <div
                       style={{ width: "100%", maxWidth: "400px" }}

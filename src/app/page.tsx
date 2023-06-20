@@ -23,7 +23,7 @@ export default function Page() {
           description="نکست سون|  خدمات یکپارچه خودرو، استعلام و پرداخت عوارض و بیمه ماشین"
         />
       <title>
-        های؛ خدمات یکپارچه خودرو، استعلام و پرداخت عوارض و بیمه ماشین
+        نکست سون؛ خدمات یکپارچه خودرو، استعلام و پرداخت عوارض و بیمه ماشین
       </title>
 
       <div>
@@ -57,7 +57,7 @@ export default function Page() {
                       <div className="container transform-top">
                         <div className="row plate-frame">
                           <div className="mdAndUp col col-6">
-                            <h1>های؛ همه خدمات </h1>
+                            <h1>نکست سون؛ همه خدمات </h1>
                             <p>
                               به راحتی پلاک خودرو خود را ذخیره کنید تا از
                               پرداختی های خود مطلع شوید
