@@ -1,13 +1,11 @@
-import React, { useEffect, useState } from "react";
-import Button from "@mui/material/Button";
-import { BeatLoader } from "react-spinners";
-import MyButton from "../core/button";
 import useAuthStore from "@/store/login";
 import useStateStore from "@/store/ui-state.store";
+import { LoginMode } from "@/utils/enums";
+import { getCache } from "@/utils/helpers/cache-repo";
+import React, { useEffect, useState } from "react";
+import MyButton from "../core/button";
 import ModalView from "../core/modal";
 import Login from "../login";
-import { LoginMode } from "@/utils/enums";
-import { getCache, setCache } from "@/utils/helpers/cache-repo";
 interface MyButtonProps {
   text: string;
   width: string;

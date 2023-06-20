@@ -220,63 +220,6 @@ function Footer() {
                   </div>
                 </div>
               </div>
-
-              {/* <div className="order-sm-3 col col-12 order-2">
-                <div className="row">
-                  <div className="footer-title col col-12">
-                    <span> دانلود اپلیکیشن </span>
-                  </div>
-                  <div className="col-sm-3 col-md-2 col-6">
-                     <Link scroll={false}
-                      id="bazar-download"
-                      href="https://r.itoll.com/footerbazar"
-                      target="_blank"
-                    >
-                      <Image
-                        src="/images/bazar.svg"
-                        width={185}
-                        height={48}
-                        alt="دانلود از بازار"
-                        loading="lazy"
-                        style={{ width: "100%" }}
-                      />
-                    </Link>
-                  </div>
-                  <div className="col-sm-3 col-md-2 col-6">
-                     <Link scroll={false}
-                      id="googleplay-download"
-                      href="https://r.itoll.com/footergplay"
-                      target="_blank"
-                    >
-                      <Image
-                        src="/images/googleplay.svg"
-                        width={185}
-                        height={49}
-                        alt="دانلود از گوگل‌پلی"
-                        loading="lazy"
-                        style={{ width: "100%" }}
-                      />
-                    </Link>
-                  </div>
-
-                  <div className="col-sm-3 col-md-2 col-6">
-                     <Link scroll={false}
-                      id="direct-download"
-                      href="https://r.itoll.com/footerapp"
-                      target="_blank"
-                    >
-                      <Image
-                        src="/images/android.svg"
-                        width={185}
-                        height={49}
-                        alt="دانلود مستقیم برای اندروید"
-                        loading="lazy"
-                        style={{ width: "100%" }}
-                      />
-                    </Link>
-                  </div>
-                </div>
-              </div> */}
             </div>
           </div>
         </div>

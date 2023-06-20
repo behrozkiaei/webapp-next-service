@@ -15,6 +15,8 @@ import "../globals.css";
 import useBreakpoint from "./effects/breakpoint-effect";
 import IncreaseButton from "./increse-amount/wallet-increase-button";
 import LoginButton from "./login-button";
+import { addCommas } from "@persian-tools/persian-tools";
+import MenuItemsList from "./menu-items";
 
 export interface HeaderPropInterface {
   isTransparent?: boolean;
@@ -69,16 +71,20 @@ const Header: React.FC<HeaderPropInterface> = ({ isTransparent = false }) => {
         {breakpoint != "xs" && breakpoint != "sm" && (
           <div className="container">
             <div className="row smAndUp ma-0 ma-sm-n3">
-              <div className="d-flex  align-center pr-5 col-lg-3 col-6">
+              <div className="d-flex  align-center pr-5 col-sm-8  ">
                 <Image
                   src={
                     isTransparent ? "/icons/menu-white.svg" : "/icons/menu.svg"
                   }
-                  width={24}
-                  height={24}
+
+                  width={30}
+                  height={30}
                   alt="منو"
                   loading="lazy"
                   // aria-hidden="true"
+                  onClick={()=>{
+                    setMenuOpen(true)
+                  }}
                   className="menu menu-header"
                   style={{
                     filter: isTransparent
@@ -86,7 +92,7 @@ const Header: React.FC<HeaderPropInterface> = ({ isTransparent = false }) => {
                       : "invert(42%) sepia(93%) saturate(1352%) hue-rotate(87deg) brightness(119%) contrast(119%)",
                   }}
                 />
-                <div className="splitter mx-8" />
+                <div className="splitter mx-1" />
                 {isLoggedIn && <IncreaseButton />}
 
                 {isLoggedIn && (
@@ -120,10 +126,8 @@ const Header: React.FC<HeaderPropInterface> = ({ isTransparent = false }) => {
                 )}
                 {!isLoggedIn && <LoginButton />}
               </div>
-              <div className="lgAndUp col col-6 ">
-                <ul className="d-flex soft_gray--text" />
-              </div>
-              <div className="d-flex  flex-row justify-end align-center pl-5 col-lg-3 col-6">
+            
+              <div className="d-flex  flex-row justify-end align-center pl-5 col-sm-4  ">
                 <Image
                   src={`${
                     isTransparent
@@ -185,7 +189,7 @@ const Header: React.FC<HeaderPropInterface> = ({ isTransparent = false }) => {
       </div>
       {openMenu && (
         <>
-          <div ref={menuRef} className="menu-drawer full-width primary--text ">
+          <div ref={menuRef} className="menu-drawer full-width primary--text elevation-1">
             <div className="d-flex flex-column justify-center align-center mt-10 full-width">
               <div className="d-flex gap-1 flex-column align-center justify-center pl-5 py-0 col col-3 full-width">
                 {isLoggedIn && (
@@ -208,14 +212,17 @@ const Header: React.FC<HeaderPropInterface> = ({ isTransparent = false }) => {
                 {isLoggedIn && (
                   <div className="menu-width d-flex justify-center">
                     <p>
-                      موجودی ولت
-                      <span>{` ${result?.Wallet?.amount ?? 0} ریال`}</span>
+                       موجودی ولت : 
+                      <span> {`${parseFloat(result?.Wallet?.amount ?? "0") > 0 ? addCommas(result?.Wallet?.amount ?? 0) : 0} ریال`}</span>
                     </p>
                   </div>
                 )}
-                <div className="devider menu-width"></div>
+                <div className="devider menu-width">
+
+                </div>
               </div>
             </div>
+                <MenuItemsList></MenuItemsList>
           </div>
         </>
       )}

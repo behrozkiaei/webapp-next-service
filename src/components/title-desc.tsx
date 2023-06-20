@@ -40,7 +40,7 @@ const TitleDesc: React.FC<TitleDescInterface> = ({
         )}
       </div>
 
-      {desc1 && <p className="mid_gray--text mt-1">{desc1}</p>}
+      {desc1 && <p className="mid_gray--text mt-1 mr-8">{desc1}</p>}
       {!desc1 && <Skeleton variant="text" width={120} height={40} />}
       {desc2 && <p className="mid_gray--text mt-1">{desc2}</p>}
     </div>
