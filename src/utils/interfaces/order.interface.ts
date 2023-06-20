@@ -65,10 +65,10 @@ export const  translateOrderType = (key: OrderType): string => {
   let translation = "";
   switch (key) {
     case OrderType.internetByWallet:
-      translation = "خرید اینترنت با کارت بانکی";
+      translation = "خرید اینترنت با اعتبار ولت";
       break;
     case OrderType.internetByCredit:
-      translation = "خرید اینترنت با اعتبار ولت";
+      translation = "خرید اینترنت با کارت بانکی";
       break;
     case OrderType.chargeByCredit:
       translation = "خرید شارژ با کارت بانکی";

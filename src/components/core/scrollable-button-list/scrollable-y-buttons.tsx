@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Button from "@mui/material/Button";
 import useIsMdDown from "@/components/effects/isMdDown";
 import { InternetPackageInterface } from "@/utils/interfaces/charge-internet";
+import { addCommas } from "@persian-tools/persian-tools";
 
 interface ScrollableButtonListProps {
   buttons:any[];
@@ -38,7 +39,7 @@ const isMdDown =useIsMdDown()
         >
             <div className="d-flex justify-space-between full-width">
                 <div className="my-1">{button.name ?? ""}</div>
-                <div className="mid_gray--text my-1">{button.amount + " تومان "  ?? ""} </div>
+                <div className="mid_gray--text my-1">{addCommas(button.amount) + " تومان "  ?? ""} </div>
             </div>
         </Button>
       ))}
