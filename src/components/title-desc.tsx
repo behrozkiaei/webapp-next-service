@@ -25,7 +25,7 @@ const TitleDesc: React.FC<TitleDescInterface> = ({
   return (
     <div
       className="d-flex justify-start flex-column align-start title"
-      style={{ width: "80%" }}
+      style={{ width: "100%" }}
     >
       <div className="d-flex justify-start ">
         <ArrowForwardOutlinedIcon

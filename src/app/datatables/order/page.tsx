@@ -93,6 +93,7 @@ export default function OrderTable() {
                 desc1={`
                   لیست سفارشات را اینجا ببینید
                 `}
+                width="100%"
               >
                 <TableContainer component={Paper}>
                   <Table
@@ -148,6 +149,8 @@ export default function OrderTable() {
                       <TableBody>
                         <TableRow>
                           <TableCell colSpan={6} align="center">
+                            <div className="d-flex justify-center full-width">
+
                             <BeatLoader
                               color={"var(--primary)"}
                               loading={isLoading}
@@ -155,7 +158,8 @@ export default function OrderTable() {
                               size={10}
                               aria-label="Loading Spinner"
                               data-testid="loader"
-                            />
+                              />
+                              </div>
                           </TableCell>
                         </TableRow>
                       </TableBody>
@@ -163,7 +167,9 @@ export default function OrderTable() {
                       <TableBody>
                         <TableRow>
                           <TableCell align="right">
+                          <div className="d-flex justify-center full-width">
                             {"هیچ رکوردی ثبت نشده است"}
+                            </div>
                           </TableCell>
                         </TableRow>
                       </TableBody>
