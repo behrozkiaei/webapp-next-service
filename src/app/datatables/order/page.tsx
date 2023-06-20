@@ -132,7 +132,7 @@ export default function OrderTable() {
                             <TableCell align="right">
                               {row.isPaid ? "پرداخت شده " : "پرداخت نشده"}
                             </TableCell>
-                            <TableCell colspan="6" align="center">
+                            <TableCell colSpan={6} align="center">
                               <Link
                                 scroll={false}
                                 href={`/receipt?id=${row.id}`}
@@ -147,7 +147,7 @@ export default function OrderTable() {
                     ) : isLoading ? (
                       <TableBody>
                         <TableRow>
-                          <TableCell colspan="6" align="center">
+                          <TableCell colSpan={6} align="center">
                             <BeatLoader
                               color={"var(--primary)"}
                               loading={isLoading}
