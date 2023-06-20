@@ -127,13 +127,7 @@ export default function Khalafi() {
       if (operatorData) setSimTypeColor(operatorData?.color!);
     }
   }, [mobile]);
-  useEffect(() => {
-    if (productIndex >= 0 && internetPackages) {
-      setProductId(
-        internetPackages[packageIndex].value[productIndex].product_id
-      );
-    }
-  }, [productIndex, internetPackages]);
+
 
   useEffect(() => {
    if(!mobileHasError && chargeOrInternet == "internet"){
@@ -279,10 +273,11 @@ export default function Khalafi() {
                         <ScrollableButtonListVertical
                           buttons={internetPackages[packageIndex].value.filter(items=>items.operator == operator?.shortName) ?? []}
                           height={300}
-                          onClick={(index) => {
+                          onClick={(index,button) => {
                             console.log(index);
 
                             setProductIndex(index);
+                            setProductId(button.product_id)
                           }}
                         />
                       </div>

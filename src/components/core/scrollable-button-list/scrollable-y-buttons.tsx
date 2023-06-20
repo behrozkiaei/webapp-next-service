@@ -8,7 +8,7 @@ import { addCommas } from "@persian-tools/persian-tools";
 interface ScrollableButtonListProps {
   buttons:any[];
   height: number;
-  onClick: (index: number) => void;
+  onClick: (index: any , button:any) => void;
 }
 
 const ScrollableButtonListVertical: React.FC<ScrollableButtonListProps> = ({
@@ -17,9 +17,10 @@ const ScrollableButtonListVertical: React.FC<ScrollableButtonListProps> = ({
   onClick
 }) => {
   const [selectedButton, setSelectedButton] = useState<number | null>(null);
-  const setSelected = (index: number) => {
+  const setSelected = (index: number , button:any) => {
+
     setSelectedButton(index);
-    onClick(index)
+    onClick(index , button)
   };
 
 const isMdDown =useIsMdDown()
@@ -37,10 +38,11 @@ const isMdDown =useIsMdDown()
             // display: 'block',
             width: "99%",
           }}
-          onClick={() => setSelected(index)}
+          onClick={() => setSelected(index,button)}
         >
             <div className="d-flex justify-space-between full-width">
                 <div className="my-1">{button.name ?? ""}</div>
+                <div className="my-1">{button.product_id ?? ""}</div>
                 <div className="mid_gray--text my-1">{addCommas(button.amount) + " تومان "  ?? ""} </div>
             </div>
         </Button>
