@@ -147,7 +147,7 @@ export default function OrderTable() {
                     ) : isLoading ? (
                       <TableBody>
                         <TableRow>
-                          <TableCell align="center">
+                          <TableCell  colSpan={6} align="center">
                             <BeatLoader
                               color={"var(--primary)"}
                               loading={isLoading}
@@ -162,7 +162,7 @@ export default function OrderTable() {
                     ) : (
                       <TableBody>
                         <TableRow>
-                          <TableCell align="right">
+                          <TableCell colSpan={6} align="right">
                             {"هیچ رکوردی ثبت نشده است"}
                           </TableCell>
                         </TableRow>
