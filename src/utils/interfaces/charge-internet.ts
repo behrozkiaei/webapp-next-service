@@ -21,6 +21,7 @@ export interface InternetPackageInterface {
     internetType: string;
     valueOperator: string;
     days: number;
+    operator:string;
     volume: number;
     unit: string;
     course: string;

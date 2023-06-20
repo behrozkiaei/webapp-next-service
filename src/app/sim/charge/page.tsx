@@ -134,6 +134,20 @@ export default function Khalafi() {
       );
     }
   }, [productIndex, internetPackages]);
+
+  useEffect(() => {
+   if(!mobileHasError && chargeOrInternet == "internet"){
+     
+     const element = document.getElementById('packages');
+     if (element) {
+      const elementRect = element.getBoundingClientRect();
+      const absoluteElementTop = elementRect.top + window.pageYOffset;
+      const middle = absoluteElementTop - window.innerHeight * 0.2;
+      window.scrollTo(0, middle);
+     }
+   }
+  
+}, [mobileHasError,chargeOrInternet]);
   return (
     <>
 
@@ -261,10 +275,10 @@ export default function Khalafi() {
                   {!mobileHasError &&
                     chargeOrInternet == "internet" &&
                     internetPackages && (
-                      <div className="d-flex justify-start align-center my-1 px-2 full-width">
+                      <div className="d-flex justify-start align-center my-1 px-2 full-width" id="packages">
                         <ScrollableButtonListVertical
-                          buttons={internetPackages[packageIndex].value ?? []}
-                          height={200}
+                          buttons={internetPackages[packageIndex].value.filter(items=>items.operator == operator?.shortName) ?? []}
+                          height={300}
                           onClick={(index) => {
                             console.log(index);
 

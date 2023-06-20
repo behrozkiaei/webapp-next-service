@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import Button from "@mui/material/Button";
 import useIsMdDown from "@/components/effects/isMdDown";
-import { InternetPackageInterface } from "@/utils/interfaces/charge-internet";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
 import { addCommas } from "@persian-tools/persian-tools";
 
 interface ScrollableButtonListProps {
@@ -23,10 +24,11 @@ const ScrollableButtonListVertical: React.FC<ScrollableButtonListProps> = ({
 
 const isMdDown =useIsMdDown()
   return (
-    <div style={{ overflowY: "scroll", height, width: "100%" }}>
-      {buttons.map((button, index) => (
+    <div style={{  height, width: "100%" }}>
+      <Swiper className=""  slidesPerView={4.5}  direction={"vertical"}>
+    {buttons.map((button, index) => (
+      <SwiperSlide  key={index}>
         <Button
-          key={index}
           sx={{ width: "95%" }}
           variant="outlined"
           style={{
@@ -42,7 +44,9 @@ const isMdDown =useIsMdDown()
                 <div className="mid_gray--text my-1">{addCommas(button.amount) + " تومان "  ?? ""} </div>
             </div>
         </Button>
+        </SwiperSlide>
       ))}
+     </Swiper>
     </div>
   );
 };
